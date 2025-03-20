@@ -24,18 +24,18 @@ export class ApiService {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        return response.json() as Promise<T>;
+        return await response.json() as Promise<T>;
     }
 
     public async get<T>(endpoint: string, headers?: Record<string, string>): Promise<T> {
         return this.request<T>(endpoint, { method: 'GET', headers });
     }
 
-    public async post<T>(endpoint: string, body: any, headers?: Record<string, string>): Promise<T> {
+    public async post<T>(endpoint: string, body: unknown, headers?: Record<string, string>): Promise<T> {
         return this.request<T>(endpoint, { method: 'POST', headers, body });
     }
 
-    public async put<T>(endpoint: string, body: any, headers?: Record<string, string>): Promise<T> {
+    public async put<T>(endpoint: string, body: unknown, headers?: Record<string, string>): Promise<T> {
         return this.request<T>(endpoint, { method: 'PUT', headers, body });
     }
 

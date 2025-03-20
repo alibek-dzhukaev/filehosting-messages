@@ -1,39 +1,32 @@
-import { useEffect, useState } from 'react'
-import { authService, usersService } from './services'
+import {authService} from './services'
+import {observer} from "mobx-react-lite";
+import {authModel} from "@/models";
 
 const dto = {
-  username: 'alibedzhukaev',
+  username: 'alibevelikiy',
   password: '12345678'
 }
 
-const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false)
-
-
-  const signin = async () => {
-    await authService.signin(dto)
+const App = observer(() => {
+  const login = async () => {
+    await authService.login(dto)
       .catch(console.error)
-    setLoggedIn(true)
   }
 
   const signup = async () => {
     await authService.signup(dto)
   }
 
-  useEffect(() => {
-    if (loggedIn === false) {
-      return;
-    }
-    usersService.getUsers()
-  }, [loggedIn])
   return (
     <>
-      <div>app start</div>
+      <div style={{fontSize: "5em"}}>isAuth:</div>
+      <div style={{fontSize: "5em"}}>{JSON.stringify(authModel.isAuthenticated)}</div>
 
-      <button onClick={signin}>Login</button>
+
+      <button onClick={login}>Login</button>
       <button onClick={signup}>Register</button>
     </>
   )
-}
+})
 
 export default App

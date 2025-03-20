@@ -1,21 +1,25 @@
 import { container, injectable } from 'tsyringe'
 
+type Constructor<T, Args extends unknown[] = unknown[]> = new (...args: Args) => T;
+
 export const scope = {
-	container<T, R>() {
-		return function (target: new (...args: R[]) => T) {
-			injectable()(target)
-			container.register(target.name, { useClass: target })
-			return target
-		}
+	container<T, Args extends unknown[]>() {
+		return function (target: Constructor<T, Args>) {
+			injectable()(target);
+			container.register(target.name, { useClass: target });
+			return target;
+		};
 	},
-	singleton<T, R>() {
-		return function (target: new (...args: R[]) => T) {
-			injectable()(target)
-			container.registerSingleton(target.name, target)
-			return target
-		}
+
+	singleton<T, Args extends unknown[]>() {
+		return function (target: Constructor<T, Args>) {
+			injectable()(target);
+			container.registerSingleton(target.name, target);
+			return target;
+		};
 	},
-	resolve<T, R>(token: string | (new (...args: R[]) => T)): T {
-		return container.resolve<T>(token)
-	}
-}
+
+	resolve<T>(token: string | Constructor<T>): T {
+		return container.resolve<T>(typeof token === 'string' ? token : token.name);
+	},
+};

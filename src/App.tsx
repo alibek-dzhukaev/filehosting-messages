@@ -1,38 +1,35 @@
 import { useEffect, useState } from 'react'
-import { routerService } from './services'
-// import { usersService } from './services'
+import {authService, usersService} from './services'
 
 const dto = {
-  username: 'alibedzhukaev',
+  username: 'alibevelikiy',
   password: '12345678'
 }
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
 
-  routerService
-
-  const signin = async () => {
-    // await authService.signin(dto)
-    //   .catch(console.error)
+  const login = async () => {
+    await authService.login(dto)
+      .catch(console.error)
     setLoggedIn(true)
   }
 
   const signup = async () => {
-    // await authService.signup(dto)
+    await authService.signup(dto)
   }
 
   useEffect(() => {
-    if (loggedIn === false) {
+    if (!loggedIn) {
       return;
     }
-    // usersService.getUsers()
+    usersService.getUsers()
   }, [loggedIn])
   return (
     <>
       <div>app start</div>
 
-      <button onClick={signin}>Login</button>
+      <button onClick={login}>Login</button>
       <button onClick={signup}>Register</button>
     </>
   )

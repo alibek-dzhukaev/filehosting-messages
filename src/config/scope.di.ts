@@ -1,11 +1,10 @@
-
 import { container, injectable } from 'tsyringe'
 
 export const scope = {
 	container<T, R>() {
 			return function (target: new (...args: R[]) => T) {
 					injectable()(target);
-					container.register(target, { useClass: target });
+					container.register(target.name, { useClass: target });
 					return target;
 			};
 	},
@@ -13,7 +12,7 @@ export const scope = {
 	singleton<T, R>() {
 			return function (target: new (...args: R[]) => T) {
 					injectable()(target);
-					container.registerSingleton(target, target);
+					container.registerSingleton(target.name, target);
 					return target;
 			};
 	},

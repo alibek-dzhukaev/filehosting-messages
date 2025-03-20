@@ -1,11 +1,10 @@
 import { scope } from '@config/scope.di'
-import { inject } from 'tsyringe'
 import { ApiService } from '../api'
 
 @scope.container()
 export class UsersService {
 		public constructor(
-				@inject(ApiService.name) private readonly apiService: ApiService,
+				private readonly apiService: ApiService,
 		) {}
 
 		public async getUsers() {

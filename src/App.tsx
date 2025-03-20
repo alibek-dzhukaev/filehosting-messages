@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { authService, usersService } from './services'
+import { routerService } from './services'
+// import { usersService } from './services'
 
 const dto = {
   username: 'alibedzhukaev',
@@ -9,22 +10,23 @@ const dto = {
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
 
+  routerService
 
   const signin = async () => {
-    await authService.signin(dto)
-      .catch(console.error)
+    // await authService.signin(dto)
+    //   .catch(console.error)
     setLoggedIn(true)
   }
 
   const signup = async () => {
-    await authService.signup(dto)
+    // await authService.signup(dto)
   }
 
   useEffect(() => {
     if (loggedIn === false) {
       return;
     }
-    usersService.getUsers()
+    // usersService.getUsers()
   }, [loggedIn])
   return (
     <>

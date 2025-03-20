@@ -1,4 +1,3 @@
-import { inject } from 'tsyringe'
 import { scope } from '@/config/scope.di'
 
 import { ApiService } from '../api'
@@ -7,7 +6,7 @@ import { SigninDto, SignupDto } from './types';
 @scope.container()
 export class AuthService {
 	public constructor(
-		@inject(ApiService.name) private readonly apiService: ApiService
+		private readonly apiService: ApiService
 	) {
 	}
 

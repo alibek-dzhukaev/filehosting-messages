@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect} from "vitest";
+import {beforeEach, describe, expect, it} from "vitest";
 import {AuthModel} from "../../src/models/auth";
 import {scope} from "../../src/config/scope.di";
 

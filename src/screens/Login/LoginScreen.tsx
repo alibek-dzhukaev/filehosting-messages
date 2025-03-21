@@ -3,7 +3,7 @@ import {FC, FormEvent} from 'react'
 import styles from './LoginScreen.module.scss';
 
 interface Props {
-
+    p: string
 }
 
 export const LoginScreen: FC<Props> = () => {

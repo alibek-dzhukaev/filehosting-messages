@@ -1,17 +1,19 @@
 import { container, injectable } from 'tsyringe'
 
-type Constructor<T, Args extends any[] = any[]> = new (...args: Args) => T;
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+type Constructor<T, R extends any[] = any[]> = new (...args: R) => T;
 
 export const scope = {
-	container<T, Args extends unknown[]>() {
+	/* eslint-disable  @typescript-eslint/no-explicit-any */
+	container<T, Args extends any[]>() {
 		return function (target: Constructor<T, Args>) {
 			injectable()(target);
 			container.register(target.name, { useClass: target });
 			return target;
 		};
 	},
-
-	singleton<T, Args extends unknown[]>() {
+	/* eslint-disable  @typescript-eslint/no-explicit-any */
+	singleton<T, Args extends any[]>() {
 		return function (target: Constructor<T, Args>) {
 			injectable()(target);
 			container.registerSingleton(target.name, target);

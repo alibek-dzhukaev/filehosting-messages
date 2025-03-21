@@ -2,7 +2,8 @@ import {authService, routerService} from './services'
 import {observer} from "mobx-react-lite";
 import {authModel} from "@/models";
 import {AuthGuard} from "@components/AuthGuard/AuthGuard";
-import {RouterProvider, useRouter} from "@/hooks/router.hook";
+import {useRouter} from "@/hooks/router.hook";
+import {RouterProvider} from "@/contexts/router/RouterContext";
 
 const dto = {
   username: 'alibevelikiy',

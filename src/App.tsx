@@ -1,6 +1,8 @@
-import {authService} from './services'
+import {authService, routerService} from './services'
 import {observer} from "mobx-react-lite";
 import {authModel} from "@/models";
+import {AuthGuard} from "@components/AuthGuard/AuthGuard";
+import {RouterProvider, useRouter} from "@/hooks/router.hook";
 
 const dto = {
   username: 'alibevelikiy',
@@ -8,6 +10,8 @@ const dto = {
 }
 
 const App = observer(() => {
+    const {router} = useRouter();
+
   const login = async () => {
     await authService.login(dto)
       .catch(console.error)
@@ -18,15 +22,21 @@ const App = observer(() => {
   }
 
   return (
-    <>
+    <AuthGuard isAuthenticated={authModel.isAuthenticated}>
+        <button onClick={router.goBack}>Back</button>
+
       <div style={{fontSize: "5em"}}>isAuth:</div>
       <div style={{fontSize: "5em"}}>{JSON.stringify(authModel.isAuthenticated)}</div>
 
 
       <button onClick={login}>Login</button>
       <button onClick={signup}>Register</button>
-    </>
+    </AuthGuard>
   )
 })
 
-export default App
+export const fileHostingApplication = (
+    <RouterProvider router={routerService}>
+        <App />
+    </RouterProvider>
+)

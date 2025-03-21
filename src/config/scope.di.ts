@@ -1,6 +1,6 @@
 import { container, injectable } from 'tsyringe'
 
-type Constructor<T, Args extends unknown[] = unknown[]> = new (...args: Args) => T;
+type Constructor<T, Args extends any[] = any[]> = new (...args: Args) => T;
 
 export const scope = {
 	container<T, Args extends unknown[]>() {

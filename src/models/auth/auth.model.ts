@@ -1,18 +1,17 @@
 import { scope } from '@config/scope.di'
-import {makeAutoObservable, reaction} from 'mobx'
-import {LoginDto, Role} from "@services/auth/types";
+import { makeAutoObservable, reaction } from 'mobx'
+import { LoginDto, Role } from "@services/auth/types"
 
 @scope.singleton()
 export class AuthModel {
 	private _isAuthenticated = false;
 	private _role = Role.USER;
-	private _loginConfig: LoginDto = {
-		username: '',
-		password: ''
-	}
+
+	private _username = ''
+	private _password = ''
 
 	public constructor() {
-		makeAutoObservable(this, {}, {autoBind: true})
+		makeAutoObservable(this, {}, { autoBind: true })
 
 		reaction(
 			() => this._isAuthenticated,
@@ -22,11 +21,25 @@ export class AuthModel {
 		)
 	}
 
-	public get loginConfig() {
-		return this._loginConfig;
+	public get loginConfig(): LoginDto {
+		return {
+			username: this._username,
+			password: this._password,
+		}
 	}
-	public set loginConfig(dto) {
-		Object.assign(this._loginConfig, dto)
+
+	public get username() {
+		return this._username
+	}
+	public set username(val: string) {
+		this._username = val
+	}
+
+	public get password() {
+		return this._password
+	}
+	public set password(val: string) {
+		this._password = val
 	}
 
 	public get isAuthenticated() {
@@ -37,10 +50,10 @@ export class AuthModel {
 	}
 
 	public get role() {
-		return this._role;
+		return this._role
 	}
 
 	public set role(role: Role) {
-		this._role = role;
+		this._role = role
 	}
 }

@@ -1,18 +1,19 @@
 import {scope} from "@config/scope.di";
 import {AuthModel} from "@/models/auth";
-import {inject} from "tsyringe";
 import {AuthService} from "@services/auth";
+import { RouterService } from '@/services/router'
+import { PrivateRoutes } from '@/layouts/PrivateLayout/routes'
 
 @scope.container()
 export class AuthFlow {
     public constructor(
-        @inject(AuthModel.name) private readonly authModel: AuthModel,
-        @inject(AuthService.name) private readonly authService: AuthService,
+        @scope.inject(AuthModel) private readonly authModel: AuthModel,
+        @scope.inject(AuthService) private readonly authService: AuthService,
+        @scope.inject(RouterService) private readonly routerService: RouterService
     ) {
     }
     public async start() {
-        await this.authService.signup(
-            this.authModel.loginConfig
-        )
+        await this.authService.login(this.authModel.loginConfig)
+        this.routerService.navigate(PrivateRoutes.FEED);
     }
 }

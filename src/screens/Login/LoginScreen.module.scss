@@ -1,0 +1,45 @@
+.inputGroup {
+  margin-bottom: 1rem;
+  text-align: left;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

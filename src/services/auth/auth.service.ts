@@ -2,14 +2,13 @@ import { scope } from '@/config/scope.di'
 
 import { ApiService } from '../api'
 import {AuthenticatedUser, LoginDto, SignupDto} from './types';
-import {inject} from "tsyringe";
 import {AuthModel} from "@/models/auth";
 
 @scope.container()
 export class AuthService {
 	public constructor(
-		@inject(ApiService.name) private readonly apiService: ApiService,
-		@inject(AuthModel.name) private readonly authModel: AuthModel,
+		@scope.inject(ApiService) private readonly apiService: ApiService,
+		@scope.inject(AuthModel) private readonly authModel: AuthModel,
 	) {
 	}
 
@@ -25,7 +24,6 @@ export class AuthService {
 
 	public async me() {
 		const authenticatedUser = await this.apiService.get<AuthenticatedUser>('auth/me')
-		console.log('me: ', authenticatedUser)
 		this.authModel.isAuthenticated = Boolean(authenticatedUser)
 		this.authModel.role = authenticatedUser.roles[0]
 	}

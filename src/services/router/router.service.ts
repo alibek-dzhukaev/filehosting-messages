@@ -34,6 +34,14 @@ export class RouterService {
         this.updateCurrentPath(path);
     }
 
+    public goBack() {
+        window.history.back();
+    }
+
+    public get canGoBack() {
+        return window.history.length;
+    }
+
     /**
      * Subscribes to route changes.
      */

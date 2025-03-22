@@ -2,7 +2,7 @@ import {scope} from "@config/scope.di";
 import {AuthModel} from "@/models/auth";
 import {AuthService} from "@services/auth";
 import { RouterService } from '@/services/router'
-import { PrivateRoutes } from '@/layouts/PrivateLayout/PrivateLayout'
+import { PrivateRoutes } from '@/layouts/PrivateLayout/routes'
 
 @scope.container()
 export class AuthFlow {

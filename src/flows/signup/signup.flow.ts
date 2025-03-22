@@ -2,7 +2,7 @@ import {scope} from "@config/scope.di";
 import {SignupModel} from "@/models/signup";
 import {AuthService} from "@services/auth";
 import { RouterService } from '@/services/router'
-import { PublicRoutes } from '@/layouts/PubicLayout/PublicLayout'
+import { PublicRoutes } from '@/layouts/PubicLayout/routes'
 
 @scope.container()
 export class SignupFlow {

@@ -1,0 +1,17 @@
+.link {
+  color: #007bff; // Default link color
+  text-decoration: none; // Remove underline
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #f0f0f0; // Light gray background on hover
+    text-decoration: underline; // Underline on hover
+  }
+
+  &.active {
+    font-weight: bold; // Bold text for active link
+    color: #0056b3; // Darker blue for active link
+  }
+}

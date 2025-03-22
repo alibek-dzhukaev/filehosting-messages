@@ -1,27 +1,45 @@
-import {FC, FormEvent} from 'react'
-
+import { FormEvent } from 'react';
 import styles from './LoginScreen.module.scss';
+import { authModel } from '@/models'
+import { authFlow } from '@/flows'
+import ScreenContainer from '@/components/ScreenContainer/ScreenContainer'
+import AuthBox from '@/components/AuthBox/AuthBox'
 
-interface Props {
-    p: string
-}
+export const LoginScreen = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    authFlow.start()
+  };
 
-export const LoginScreen: FC<Props> = () => {
-
-    const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        console.log(event.currentTarget)
-    }
-
-    return (
-        <form onSubmit={onSubmit} className={styles.loginScreen}>
-            <div>
-                <input type="text" placeholder="username" name="username"/>
-            </div>
-            <div>
-                <input type="password" placeholder="password" name="password"/>
-            </div>
-            <button type="submit">Submit</button>
+  return (
+    <ScreenContainer>
+      <AuthBox title='Login'>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={authModel.username}
+              onChange={(e) => authModel.username = e.target.value}
+              required
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={authModel.password}
+              onChange={(e) => authModel.username = e.target.value }
+              required
+            />
+          </div>
+          <button type="submit" className={styles.submitButton}>
+            Login
+          </button>
         </form>
-    )
-}
+      </AuthBox>
+    </ScreenContainer>
+  );
+};

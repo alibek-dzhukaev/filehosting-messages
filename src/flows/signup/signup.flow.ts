@@ -1,18 +1,21 @@
 import {scope} from "@config/scope.di";
-import {inject} from "tsyringe";
 import {SignupModel} from "@/models/signup";
 import {AuthService} from "@services/auth";
+import { RouterService } from '@/services/router'
+import { PublicRoutes } from '@/layouts/PubicLayout/PublicLayout'
 
 @scope.container()
 export class SignupFlow {
     public constructor(
-        @inject(SignupModel.name) private readonly signupModel: SignupModel,
-        @inject(AuthService.name) private readonly authService: AuthService,
+        @scope.inject(SignupModel) private readonly signupModel: SignupModel,
+        @scope.inject(AuthService) private readonly authService: AuthService,
+        @scope.inject(RouterService) private readonly routerService: RouterService
     ) {
     }
     public async start() {
-        await this.authService.signup(
-            this.signupModel.signupConfig
-        )
+        this.signupModel.isLoading = true;
+        await this.authService.signup(this.signupModel.signupConfig);
+        this.signupModel.isLoading = false;
+        this.routerService.navigate(PublicRoutes.LOGIN);
     }
 }

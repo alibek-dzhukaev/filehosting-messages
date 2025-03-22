@@ -20,6 +20,7 @@ const App = observer(() => {
 
   const signup = async () => {
     await authService.signup(dto)
+      .catch(console.error)
   }
 
   return (

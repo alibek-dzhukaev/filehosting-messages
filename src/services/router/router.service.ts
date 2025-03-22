@@ -38,6 +38,10 @@ export class RouterService {
         window.history.back();
     }
 
+    public get canGoBack() {
+        return window.history.length;
+    }
+
     /**
      * Subscribes to route changes.
      */

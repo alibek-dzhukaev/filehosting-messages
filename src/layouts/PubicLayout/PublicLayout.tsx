@@ -1,6 +1,5 @@
 import {FC, ReactNode} from "react";
 
-import styles from './PublicLayout.module.scss';
 import {LoginScreen} from "@screens/Login/LoginScreen";
 import {useRouter} from "@/hooks/router.hook";
 import { AboutScreen } from '@/screens/About/AboutScreen'
@@ -30,17 +29,7 @@ export const PublicLayout: FC<Props> = ({children}) => {
     }[currentPath]
 
     return (
-        <div className={styles.publicLayout}>
-            {component}
-            {!component && (
-                <>
-                          {children}
-                          <div style={{marginTop: '1rem', marginLeft: '3rem'}}>
-                <button onClick={() => router.navigate(PublicRoutes.LOGIN)}>Login Page</button>
-            </div>
-                </>
-            )}
-        </div>
+        <main>{component}</main>
     );
 };
 

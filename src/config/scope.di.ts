@@ -24,7 +24,7 @@ export const scope = {
 
 	inject<T>(token: string | symbol | Constructor<T>) {
 		return function (
-			target: Object,
+			target: object,
 			propertyKey: string | symbol | undefined,
 			parameterIndex: number
 		) {

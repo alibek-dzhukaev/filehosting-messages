@@ -1,20 +1,10 @@
-import {FC, ReactNode} from "react";
-import styles from './PrivateLayout.module.scss';
+import {FC} from "react";
 
-
-interface Props {
-    children: ReactNode;
-}
-
-export const enum PrivateRoutes {
-    FEED = '/feed',
-}
-
-export const PrivateLayout: FC<Props> = ({children}) => {
+export const PrivateLayout: FC = () => {
 
     return (
-        <div className={styles.privateLayout}>
-            {children}
-        </div>
+        <main>
+            {}
+        </main>
     );
 };

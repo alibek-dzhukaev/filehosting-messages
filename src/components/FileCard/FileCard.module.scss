@@ -39,6 +39,9 @@
     display: flex;
     gap: 1rem; // Space between buttons
     margin-top: 1rem; // Space between details and buttons
+    opacity: 0; // Initially hidden
+    transform: translateY(10px); // Start slightly below
+    transition: opacity 0.3s ease, transform 0.3s ease; // Smooth transition
 
     .actionButton {
       background: none;
@@ -61,5 +64,10 @@
         font-size: 1.25rem; // Larger icon size
       }
     }
+  }
+
+  &:hover .actionButtons {
+    opacity: 1; // Fully visible on hover
+    transform: translateY(0); // Move to original position
   }
 }

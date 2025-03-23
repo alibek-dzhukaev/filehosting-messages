@@ -19,7 +19,7 @@ export const FileHosting: FC = () => {
 
   const loadMoreFiles = useCallback(async () => {
     const newFiles = Array.from({ length: 10 }, (_, i) => ({
-      id: `${page}-${i}`,
+      id: `${page}-${i}${Math.random().toString(18)}`,
       name: `File ${page}-${i}`,
       type: 'Document',
       size: '1.2MB',
@@ -33,8 +33,8 @@ export const FileHosting: FC = () => {
   const { isFetching } = useInfiniteScroll(loadMoreFiles);
 
   useEffect(() => {
-    loadMoreFiles(); // Load initial files
-  }, [loadMoreFiles]);
+    void loadMoreFiles(); // Load initial files
+  }, []);
 
 
   return (

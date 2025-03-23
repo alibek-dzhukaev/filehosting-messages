@@ -1,3 +1,5 @@
+$header-height: 70px;
+
 .fileHosting {
   display: flex;
   height: 100%; // Take up full height
@@ -8,6 +10,8 @@
   flex: 1; // Take up remaining space
   padding: 1.5rem;
   background-color: #ffffff; // White background for main content
+  max-height: calc(100vh - $header-height);
+  overflow-y: auto;
 
   .fileList {
     display: grid;

@@ -1,0 +1,42 @@
+.userDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #e9ecef;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.detailIcon {
+  font-size: 1.5rem;
+  color: #3498db;
+  transition: color 0.3s ease;
+}
+
+.detailItem:hover .detailIcon {
+  color: #2980b9;
+}
+
+.detailItem strong {
+  color: #2c3e50;
+}
+
+.detailItem p {
+  margin: 0.25rem 0;
+  color: #7f8c8d;
+}

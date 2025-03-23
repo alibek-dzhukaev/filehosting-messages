@@ -1,28 +1,31 @@
-$header-height: 70px;
-
 .fileHosting {
   display: flex;
-  height: 100%; // Take up full height
-  flex-grow: 1;
+  flex-direction: column;
+  height: 100vh; // Take up the full viewport height
 }
 
 .mainContent {
-  flex: 1; // Take up remaining space
+  display: flex;
+  flex-direction: column;
+  flex: 1; // Take up all available space
   padding: 1.5rem;
   background-color: #ffffff; // White background for main content
-  max-height: calc(100vh - $header-height);
-  overflow-y: auto;
+  overflow-y: auto; // Allow scrolling if content overflows
+}
 
-  .fileList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Responsive grid
-    gap: 1.5rem; // Space between cards
-  }
+.fileGrid {
+  flex-grow: 1; // Take up remaining space
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); // Responsive grid
+  gap: 1.5rem; // Space between cards
+  align-content: start; // Align cards to the top
+}
 
-  .loading {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #7f8c8d; // Light gray for loading text
-    margin-top: 1rem;
-  }
+.paginationContainer {
+  flex-shrink: 0; // Prevent the pagination from shrinking
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #f8f9fa; // Light background for pagination
+  border-top: 1px solid #ddd; // Add a border to separate from main content
 }

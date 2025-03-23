@@ -4,7 +4,7 @@ import { LoginDto, Role } from "@services/auth/types"
 
 @scope.singleton()
 export class AuthModel {
-	private _isAuthenticated = false;
+	private _isAuthenticated = true;
 	private _role = Role.USER;
 
 	private _username = ''

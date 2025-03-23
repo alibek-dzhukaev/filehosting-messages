@@ -1,0 +1,101 @@
+.messenger {
+  display: flex;
+  flex-direction: column;
+  height: 100%; // Take up full height
+  background-color: #ffffff; // White background
+  border-radius: 8px; // Rounded corners
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow
+  overflow: hidden; // Prevent content from overflowing
+}
+
+.messageDisplay {
+  flex: 1; // Take up remaining space
+  padding: 1.5rem;
+  overflow-y: auto; // Enable scrolling for messages
+  background-color: #f8f9fa; // Light gray background for messages
+}
+
+.message {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #ffffff; // White background for each message
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for messages
+
+  .messageAuthor {
+    font-weight: bold;
+    color: #2c3e50; // Dark blue-gray for author name
+    margin-bottom: 0.5rem;
+  }
+
+  .messageText {
+    color: #333; // Dark gray for message text
+    margin-bottom: 0.5rem;
+  }
+
+  .messageTime {
+    font-size: 0.8rem;
+    color: #7f8c8d; // Light gray for timestamp
+    text-align: right;
+  }
+}
+
+.inputSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem; // Space between input and buttons
+  padding: 1rem;
+  background-color: #ffffff; // White background for input section
+  border-top: 1px solid #ddd; // Divider line
+
+  .inputPlaceholder {
+    flex: 1; // Take up remaining space
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #7f8c8d; // Light gray for placeholder text
+    font-size: 0.9rem;
+  }
+
+  .actionButtons {
+    display: flex;
+    gap: 0.5rem; // Space between buttons
+
+    .actionButton {
+      padding: 0.75rem 1rem;
+      background-color: #3498db; // Blue background for buttons
+      color: #fff; // White text
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #2980b9; // Darker blue on hover
+      }
+
+      &:active {
+        transform: scale(0.95); // Slightly shrink on click
+      }
+    }
+  }
+}
+
+/* Custom Scrollbar */
+.messageDisplay::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messageDisplay::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05); // Light track
+  border-radius: 4px;
+}
+
+.messageDisplay::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1); // Light thumb
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2); // Lighter thumb on hover
+  }
+}

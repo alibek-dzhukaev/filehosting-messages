@@ -1,0 +1,73 @@
+.fileCard {
+  display: flex;
+  flex-direction: column; // Stack thumbnail and details vertically
+  background-color: #ffffff; // White background
+  border-radius: 12px; // Rounded corners
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow
+  padding: 1.5rem;
+  transition: box-shadow 0.3s ease; // Smooth transition for shadow
+  cursor: pointer;
+  position: relative; // For pseudo-element positioning
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Enhanced shadow on hover
+  }
+
+  .thumbnail {
+    width: 100%; // Full width for grid layout
+    height: 150px; // Fixed height for thumbnails
+    border-radius: 8px; // Rounded corners for thumbnail
+    object-fit: cover; // Ensure the image fits
+    margin-bottom: 1rem; // Space between thumbnail and details
+  }
+
+  .details {
+    .name {
+      font-size: 1.25rem; // Larger font size
+      color: #2c3e50; // Dark blue-gray for file names
+      margin: 0 0 0.5rem 0;
+    }
+
+    .meta {
+      font-size: 0.9rem; // Slightly larger font size
+      color: #7f8c8d; // Light gray for metadata
+      margin: 0;
+    }
+  }
+
+  .actionButtons {
+    display: flex;
+    gap: 1rem; // Space between buttons
+    margin-top: 1rem; // Space between details and buttons
+    opacity: 0; // Initially hidden
+    transform: translateY(10px); // Start slightly below
+    transition: opacity 0.3s ease, transform 0.3s ease; // Smooth transition
+
+    .actionButton {
+      background: none;
+      border: none;
+      color: #2c3e50; // Dark blue-gray for icons
+      cursor: pointer;
+      padding: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%; // Circular buttons
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(52, 152, 219, 0.1); // Light blue background on hover
+        color: #3498db; // Blue color on hover
+      }
+
+      .icon {
+        font-size: 1.25rem; // Larger icon size
+      }
+    }
+  }
+
+  &:hover .actionButtons {
+    opacity: 1; // Fully visible on hover
+    transform: translateY(0); // Move to original position
+  }
+}

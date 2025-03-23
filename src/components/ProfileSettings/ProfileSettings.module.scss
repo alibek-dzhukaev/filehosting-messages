@@ -1,0 +1,81 @@
+.profileSettingsPage {
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profileSettingsPage h1 {
+  font-size: 2rem;
+  color: #2c3e50; // Dark blue-gray for heading
+  margin-bottom: 1.5rem;
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; // Space between form groups
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Responsive grid
+  gap: 1rem; // Space between form groups
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; // Space between label and input
+}
+
+.formGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // Space between icon and text
+  font-size: 1rem;
+  color: #7f8c8d; // Gray for labels
+}
+
+.formInput {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white; // White background for inputs
+  color: #2c3e50; // Dark blue-gray for text
+  transition: all 0.3s ease; // Smooth transition for hover/focus
+
+  &:focus {
+    border-color: #3498db; // Blue border on focus
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); // Subtle focus ring
+    outline: none; // Remove default outline
+  }
+
+  &:disabled {
+    background-color: #f8f9fa; // Light gray for disabled inputs
+    cursor: not-allowed;
+  }
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.saveButton {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3498db, #8e44ad); // Gradient background
+  color: white; // White text
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #2980b9, #9b59b6); // Darker gradient on hover
+    transform: translateY(-2px); // Lift button on hover
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow on hover
+  }
+}

@@ -1,0 +1,48 @@
+.sidebar {
+  width: 250px; // Fixed width
+  background-color: #2c3e50; // Dark blue-gray background
+  color: #fff; // White text
+  padding: 1.5rem;
+  border-right: 1px solid #34495e; // Divider line
+
+  .sidebarHeader {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #bdc3c7; // Light gray for headers
+    text-transform: uppercase; // Uppercase headers
+    letter-spacing: 1px; // Slight spacing for readability
+  }
+
+  .userList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .userItem {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem; // Space between avatar and username
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #34495e; // Darker background on hover
+      }
+
+      .avatar {
+        width: 40px; // Fixed size for avatars
+        height: 40px;
+        border-radius: 50%; // Circular avatars
+        object-fit: cover; // Ensure the image fits
+      }
+
+      .username {
+        font-size: 0.9rem;
+        color: #ecf0f1; // Light gray for usernames
+      }
+    }
+  }
+}

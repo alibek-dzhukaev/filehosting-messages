@@ -1,0 +1,24 @@
+.fileHosting {
+  display: flex;
+  height: 100%; // Take up full height
+  flex-grow: 1;
+}
+
+.mainContent {
+  flex: 1; // Take up remaining space
+  padding: 1.5rem;
+  background-color: #ffffff; // White background for main content
+
+  .fileList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Responsive grid
+    gap: 1.5rem; // Space between cards
+  }
+
+  .loading {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d; // Light gray for loading text
+    margin-top: 1rem;
+  }
+}

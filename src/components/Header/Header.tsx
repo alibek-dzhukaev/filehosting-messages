@@ -1,30 +1,25 @@
 import React from 'react'
-import { FaUser, FaEnvelope, FaFolder, FaSearch } from 'react-icons/fa' // Import icons
+import { FaUser, FaEnvelope, FaFolder } from 'react-icons/fa' // Import icons
 import styles from './Header.module.scss'
 import { Link } from '../Link/Link'
 import { PrivateRoutes } from '@/layouts/PrivateLayout/routes'
+import Typeahead from "@components/Typeahead/Typeahead";
 
 const Header: React.FC = () => {
+    const handleSearch = () => {
+        console.log('handle-search')
+    }
+
   return (
     <header className={styles.header}>
-      {/* Left: Pretty Text */}
       <div className={styles.leftSection}>
         <h1 className={styles.title}>File Hosting</h1>
       </div>
 
-      {/* Middle: Search Bar */}
       <div className={styles.middleSection}>
-        <div className={styles.searchBar}>
-          <FaSearch className={styles.searchIcon} />
-          <input
-            type="text"
-            placeholder="Search..."
-            className={styles.searchInput}
-          />
-        </div>
+       <Typeahead onSearch={handleSearch} placeholder="Search files, users..." />
       </div>
 
-      {/* Right: Icon Buttons */}
       <div className={styles.rightSection}>
 
         <Link to={PrivateRoutes.FEED} className={styles.iconButton}>

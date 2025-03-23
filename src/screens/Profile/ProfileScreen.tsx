@@ -11,13 +11,16 @@ import {ProfileSettings} from "@components/ProfileSettings/ProfileSettings";
 
 export const ProfileScreen = () => {
 
-    const {currentPath} = useRouter();
+    const {currentPath, router} = useRouter();
 
     const component = useMemo(() => {
         switch (true) {
             case currentPath.startsWith(PrivateRoutes.PROFILE_SETTINGS):
                 return <ProfileSettings />
             case currentPath.startsWith(PrivateRoutes.PROFILE_FILES):
+                return <FileManager />
+            default:
+                router.navigate(PrivateRoutes.PROFILE_FILES)
                 return <FileManager />
         }
     }, [currentPath])

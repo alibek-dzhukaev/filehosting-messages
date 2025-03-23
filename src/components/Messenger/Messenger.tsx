@@ -1,31 +1,29 @@
 import React from 'react';
 import styles from './Messenger.module.scss';
+import Message from "@components/Message/Message";
+import InputSection from "@components/InputSection/InputSection";
 
 const Messenger: React.FC = () => {
   return (
     <div className={styles.messenger}>
       {/* Message Display Section */}
       <div className={styles.messageDisplay}>
-        <div className={styles.message}>
-          <div className={styles.messageAuthor}>John Doe</div>
-          <div className={styles.messageText}>Hello! How are you doing today?</div>
-          <div className={styles.messageTime}>10:00 AM</div>
-        </div>
-        <div className={styles.message}>
-          <div className={styles.messageAuthor}>Jane Smith</div>
-          <div className={styles.messageText}>I'm doing great, thanks for asking!</div>
-          <div className={styles.messageTime}>10:05 AM</div>
-        </div>
+        <Message
+          imageUrl="https://render.fineartamerica.com/images/rendered/default/poster/5.5/8/break/images/artworkimages/medium/3/beautiful-busty-girl-mihai-b.jpg"
+          author="John Doe"
+          time="10:00 AM"
+          text="Hello! How are you doing today?"
+        />
+        <Message
+            imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1eSwNV5lWYP_DW7e_PWFQFlELSRM8gOKGjQ&s"
+            author="Jane Smith"
+            time="10:05 AM"
+            text="I'm doing great, thanks for asking!"
+        />
       </div>
 
       {/* Future Input Section */}
-      <div className={styles.inputSection}>
-        <div className={styles.inputPlaceholder}>Type your message here...</div>
-        <div className={styles.actionButtons}>
-          <button className={styles.actionButton}>Send</button>
-          <button className={styles.actionButton}>Attach</button>
-        </div>
-      </div>
+      <InputSection />
     </div>
   );
 };

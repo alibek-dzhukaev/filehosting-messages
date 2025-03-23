@@ -4,7 +4,7 @@ import styles from './FileCard.module.scss';
 
 interface FileCardProps {
   file: {
-    id: string;
+    id: number;
     name: string;
     type: string;
     size: string;

@@ -7,7 +7,7 @@ const FilesSidebar = () => {
           <ul className={styles.userList}>
             <li className={styles.userItem}>
               <img
-                src="https://via.placeholder.com/40" // Placeholder avatar
+                src="https://masterpiecer-images.s3.yandex.net/578e2ac2973011ee8799c66dc44e86ec:upscaled" // Placeholder avatar
                 alt="User Avatar"
                 className={styles.avatar}
               />
@@ -15,7 +15,7 @@ const FilesSidebar = () => {
             </li>
             <li className={styles.userItem}>
               <img
-                src="https://via.placeholder.com/40"
+                src="https://masterpiecer-images.s3.yandex.net/578e2ac2973011ee8799c66dc44e86ec:upscaled"
                 alt="User Avatar"
                 className={styles.avatar}
               />
@@ -23,7 +23,7 @@ const FilesSidebar = () => {
             </li>
             <li className={styles.userItem}>
               <img
-                src="https://via.placeholder.com/40"
+                src="https://masterpiecer-images.s3.yandex.net/578e2ac2973011ee8799c66dc44e86ec:upscaled"
                 alt="User Avatar"
                 className={styles.avatar}
               />

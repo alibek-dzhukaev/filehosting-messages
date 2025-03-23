@@ -1,56 +1,87 @@
-import {FC, useState, useEffect, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 import styles from './FileHosting.module.scss';
-import MainLayout from '@/components/MainLayout/MainLayout'
-import FilesSidebar from '@/components/FilesSidebar/FilesSidebar'
-import useInfiniteScroll from '@/hooks/infinite-scroll.hook'
 import FileCard from '@/components/FileCard/FileCard'
+import Pagination from "@components/Pagination/Pagination";
+import MainLayout from "@components/MainLayout/MainLayout";
+import FilesSidebar from "@components/FilesSidebar/FilesSidebar";
 
 interface File {
-  id: string;
-  name: string;
-  type: string;
-  size: string;
-  thumbnail: string;
+    id: number;
+    name: string;
+    type: string;
+    size: string;
+    thumbnail: string;
 }
 
-export const FileHosting: FC = () => {
-  const [files, setFiles] = useState<File[]>([]);
-  const [page, setPage] = useState(1);
+export const FileHosting: React.FC = () => {
+    const [files, setFiles] = useState<File[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [filesPerPage, setFilesPerPage] = useState(10); // Number of files per page
 
-  const loadMoreFiles = useCallback(async () => {
-    const newFiles = Array.from({ length: 10 }, (_, i) => ({
-      id: `${page}-${i}${Math.random().toString(18)}`,
-      name: `File ${page}-${i}`,
-      type: 'Document',
-      size: '1.2MB',
-      thumbnail: `https://via.placeholder.com/150?text=File+${page}-${i}`,
-    }));
+    // Simulate fetching files from an API
+    useEffect(() => {
+        const fetchFiles = () => {
+            const newFiles = Array.from({length: 50}, (_, i) => ({
+                id: i + 1,
+                name: `File ${i + 1}`,
+                type: 'Document',
+                size: '1.2MB',
+                thumbnail: `https://a.storyblok.com/f/178900/750x422/25afc1b5e3/0280c99a837190e4ae1b55577c2708851651837601_main.jpg/m/filters:quality(95)format(webp)`,
+            }));
+            setFiles(newFiles);
+        };
 
-    setFiles((prev) => [...prev, ...newFiles]);
-    setPage((prev) => prev + 1);
-  }, [page]);
+        fetchFiles();
+    }, []);
 
-  const { isFetching } = useInfiniteScroll(loadMoreFiles);
+    // Calculate the number of files to display based on screen size
+    useEffect(() => {
+        const updateFilesPerPage = () => {
+            const screenWidth = window.innerWidth;
+            if (screenWidth < 600) {
+                setFilesPerPage(4);
+            } else if (screenWidth < 900) {
+                setFilesPerPage(6);
+            } else if (screenWidth < 1200) {
+                setFilesPerPage(8);
+            } else {
+                setFilesPerPage(10);
+            }
+        };
 
-  useEffect(() => {
-    void loadMoreFiles(); // Load initial files
-  }, []);
+        window.addEventListener('resize', updateFilesPerPage);
+        updateFilesPerPage(); // Initial call
 
+        return () => window.removeEventListener('resize', updateFilesPerPage);
+    }, []);
 
-  return (
-    <MainLayout>
-      <div className={styles.fileHosting}>
-        <FilesSidebar />
+    // Get current files
+    const indexOfLastFile = currentPage * filesPerPage;
+    const indexOfFirstFile = indexOfLastFile - filesPerPage;
+    const currentFiles = files.slice(indexOfFirstFile, indexOfLastFile);
 
-        <main className={styles.mainContent}>
-          <div className={styles.fileList}>
-            {files.map((file) => (
-              <FileCard key={file.id} file={file} />
-            ))}
-          </div>
-          {isFetching && <p className={styles.loading}>Loading more files...</p>}
-        </main>
-      </div>
-    </MainLayout>
-  );
+    // Change page
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+    return (
+        <MainLayout>
+            <FilesSidebar/>
+            <main className={styles.mainContent}>
+                <div className={styles.fileGrid}>
+                    {currentFiles.map((file) => (
+                        <FileCard key={file.id} file={file}/>
+                    ))}
+                </div>
+
+                <div className={styles.paginationContainer}>
+                    <Pagination
+                        filesPerPage={filesPerPage}
+                        totalFiles={files.length}
+                        currentPage={currentPage}
+                        paginate={paginate}
+                    />
+                </div>
+            </main>
+        </MainLayout>
+    );
 };

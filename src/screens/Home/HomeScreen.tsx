@@ -5,7 +5,7 @@ export const HomeScreen = () => {
   return (
     <div className={styles.landingContainer}>
       <div className={styles.heroSection}>
-        <h1>Welcome to Our Messaging Platform</h1>
+        <h1>Welcome to Our File Hosting Platform</h1>
         <p>Connect with your friends and colleagues through direct messages and group channels.</p>
         <div className={styles.ctaButtons}>
           <Link to="/login" className={styles.ctaButton}>

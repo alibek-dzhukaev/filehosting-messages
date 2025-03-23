@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 0.5rem; // Space between buttons
+  }
+
+  .pageButton {
+    background: none;
+    border: 1px solid #ddd;
+    color: #2c3e50; // Dark blue-gray for text
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: #3498db; // Blue background on hover
+      color: #fff; // White text on hover
+    }
+
+    &.active {
+      background-color: #3498db; // Blue background for active page
+      color: #fff; // White text for active page
+      border-color: #3498db;
+    }
+  }
+}

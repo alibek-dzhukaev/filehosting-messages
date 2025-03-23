@@ -4,6 +4,7 @@ import { FeedScreen } from '@/screens/Feed/FeedScreen'
 import { useRouter } from '@/hooks/router.hook'
 import { observer } from 'mobx-react-lite'
 import { FileHosting } from '@/screens/FileHosting/FileHosting'
+import {ProfileScreen} from "@screens/Profile/ProfileScreen";
 
 export const PrivateLayout: FC = observer(() => {
     const { currentPath, router } = useRouter()
@@ -15,10 +16,14 @@ export const PrivateLayout: FC = observer(() => {
     }, [currentPath, router])
 
     const component = useMemo(() => {
-        return {
-            [PrivateRoutes.FEED]: <FeedScreen />,
-            [PrivateRoutes.FILES]: <FileHosting />
-        }[currentPath] ?? <FeedScreen />    
+        switch (true) {
+            case currentPath.startsWith(PrivateRoutes.FEED):
+                return <FeedScreen />
+            case currentPath.startsWith(PrivateRoutes.FILES):
+                return <FileHosting />
+            case currentPath.startsWith(PrivateRoutes.PROFILE):
+                return <ProfileScreen />
+        }
     }, [currentPath])
 
     return (

@@ -17,7 +17,10 @@ export const SignupScreen = observer(() => {
       setError('Passwords do not match!');
       return;
     }
-    signupFlow.start();
+    signupFlow.start()
+        .catch(error => {
+          setError(error.message)
+        })
   };
 
   const clearError = () => {
@@ -33,7 +36,7 @@ export const SignupScreen = observer(() => {
             <input
               type="text"
               id="username"
-              value={signupModel.signupConfig.username}
+              value={signupModel.username}
               onChange={(event) => signupModel.username = event.target.value}
               required
             />
@@ -58,7 +61,7 @@ export const SignupScreen = observer(() => {
               required
             />
           </div>
-          <button type="submit" className={styles.submitButton}>
+          <button type="submit" className={styles.submitButton} disabled={signupModel.isLoading}>
             Sign Up
           </button>
         </form>

@@ -1,15 +1,31 @@
 import {Role} from "@services/auth/types";
 
 export interface User {
-    readonly address: string | null
-    readonly city: string | null;
-    readonly dateOfBirthday: string | null
-    readonly email: string | null
-    readonly firstName: string | null
-    readonly gender: string | null
-    readonly id: string
-    readonly lastName: string | null
-    readonly phone: string | null
-    readonly roles: Role[]
-    readonly username: string
+    address: string | null
+    city: string | null;
+    dateOfBirthday: string | null
+    email: string | null
+    firstName: string | null
+    gender: string | null
+    id: string
+    lastName: string | null
+    phone: string | null
+    roles: Role[]
+    username: string
 }
+
+export interface CreateUserDto {
+    readonly username: string;
+    readonly password: string;
+    readonly email?: string;
+    readonly firstName?: string;
+    readonly lastName?: string;
+    readonly phone?: string;
+    readonly address?: string;
+    readonly city?: string;
+    readonly dateOfBirthday?: string;
+    readonly gender?: string;
+    readonly roles?: Role[];
+}
+
+export type UpdateUserDto = Partial<Pick<CreateUserDto, Exclude<keyof CreateUserDto, 'password'>>>

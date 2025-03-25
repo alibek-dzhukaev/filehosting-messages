@@ -14,7 +14,10 @@ export class SignupFlow {
     }
     public async start() {
         this.signupModel.isLoading = true;
-        await this.authService.signup(this.signupModel.signupConfig);
+        await this.authService.signup({
+            username: this.signupModel.username,
+            password: this.signupModel.password
+        });
         this.signupModel.isLoading = false;
         this.routerService.navigate(PublicRoutes.LOGIN);
     }

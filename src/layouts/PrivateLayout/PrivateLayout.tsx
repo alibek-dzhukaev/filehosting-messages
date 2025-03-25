@@ -20,7 +20,7 @@ export const PrivateLayout: FC = observer(() => {
                 router.navigate(PrivateRoutes.FEED)
                 return <FeedScreen />
         }
-    }, [currentPath])
+    }, [currentPath, router])
 
     return (
         <main>{component}</main>

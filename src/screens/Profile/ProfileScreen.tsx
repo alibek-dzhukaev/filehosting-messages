@@ -24,7 +24,7 @@ export const ProfileScreen = () => {
                 router.navigate(PrivateRoutes.PROFILE_FILES)
                 return <FileManager />
         }
-    }, [currentPath])
+    }, [currentPath, router])
 
     useEffect(() => {
         void authService.getProfile()

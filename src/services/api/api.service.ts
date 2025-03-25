@@ -31,12 +31,12 @@ export class ApiService {
         return this.request<T>(endpoint, { method: 'GET', headers });
     }
 
-    public async post<T>(endpoint: string, body: unknown, headers?: Record<string, string>): Promise<T> {
+    public async post<T>(endpoint: string, body = {}, headers?: Record<string, string>): Promise<T> {
         return this.request<T>(endpoint, { method: 'POST', headers, body });
     }
 
-    public async put<T>(endpoint: string, body: unknown, headers?: Record<string, string>): Promise<T> {
-        return this.request<T>(endpoint, { method: 'PUT', headers, body });
+    public async patch<T>(endpoint: string, body: unknown, headers?: Record<string, string>): Promise<T> {
+        return this.request<T>(endpoint, { method: 'PATCH', headers, body });
     }
 
     public async delete<T>(endpoint: string, headers?: Record<string, string>): Promise<T> {

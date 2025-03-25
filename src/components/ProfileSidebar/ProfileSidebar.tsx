@@ -5,9 +5,11 @@ import Modal from '@components/Modal/Modal';
 import UserInfoModalContent from '@components/UserInfoModalContent/UserInfoModalContent';
 import { Link } from '@components/Link/Link';
 import { PrivateRoutes } from '@/layouts/PrivateLayout/routes';
-import { User } from '@services/users/types';
-import { Role } from '@services/auth/types';
 import {useRouter} from "@/hooks/router.hook";
+import {authModel} from "@/models";
+import classNames from "classnames";
+import {authFlow} from "@/flows";
+import {BiLogOutCircle} from "react-icons/bi";
 
 const ProfileSidebar = () => {
     const {currentPath} = useRouter()
@@ -15,20 +17,6 @@ const ProfileSidebar = () => {
     const [profileImage, setProfileImage] = useState<string>(
         'https://masterpiecer-images.s3.yandex.net/578e2ac2973011ee8799c66dc44e86ec:upscaled'
     );
-
-    const user: User = {
-        id: '1',
-        username: 'johndoe123',
-        email: 'john.doe@example.com',
-        firstName: 'John',
-        lastName: 'Doe',
-        phone: '+1 123-456-7890',
-        address: '123 Main St',
-        city: 'New York',
-        dateOfBirthday: '1990-01-01',
-        gender: 'Male',
-        roles: [Role.ADMIN, Role.USER],
-    };
 
     const showEditAvatarButton = currentPath.startsWith(PrivateRoutes.PROFILE_SETTINGS)
 
@@ -92,16 +80,22 @@ const ProfileSidebar = () => {
                 </Link>
             </div>
             <div className={styles.userInfo}>
-                <h2>
-                    {user.firstName} {user.lastName}
-                </h2>
-                <p>{user.email}</p>
-                <p>Joined: January 2023</p>
+                <h2>{authModel.profile.firstName} {authModel.profile.lastName}</h2>
+                <p>{authModel.profile.email}</p>
+                <p>{authModel.profile.username}</p>
             </div>
+
+            <button
+                className={classNames(styles.iconButton, styles.pulse, styles.logout)}
+                aria-label="logout"
+                onClick={() => authFlow.invalidateAuth()}
+            >
+                <BiLogOutCircle />
+            </button>
 
             <Modal isOpen={isInfoModalOpen} onClose={() => setIsInfoModalOpen(false)}>
                 <h2>User Information</h2>
-                <UserInfoModalContent user={user} />
+                <UserInfoModalContent user={authModel.profile} />
             </Modal>
         </aside>
     );

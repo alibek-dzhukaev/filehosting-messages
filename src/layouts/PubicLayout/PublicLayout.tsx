@@ -22,7 +22,7 @@ export const PublicLayout: FC = () => {
                 router.navigate(PublicRoutes.HOME)
                 return <HomeScreen />
         }
-    }, [currentPath])
+    }, [currentPath, router])
 
     return (
         <main>{component}</main>

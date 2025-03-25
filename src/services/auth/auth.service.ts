@@ -1,6 +1,6 @@
-import { scope } from '@/config/scope.di'
+import {scope} from '@/config/scope.di'
 
-import { ApiService } from '../api'
+import {ApiService} from '../api'
 import {AuthenticatedUser, LoginDto, SignupDto} from './types';
 import {AuthModel} from "@/models/auth";
 import {User} from "@services/users/types";
@@ -18,9 +18,12 @@ export class AuthService {
 		await this.me()
 	}
 
+	public async logout() {
+		await this.apiService.post('auth/logout')
+	}
+
 	public async signup(signupDto: SignupDto) {
 		await this.apiService.post('auth/register', signupDto)
-		await this.me()
 	}
 
 	public async me() {
@@ -30,7 +33,17 @@ export class AuthService {
 	}
 
 	public async getProfile() {
-		const profile = await this.apiService.get<User>("users/profile")
-		console.log('profile', profile)
+		const profile = await this.apiService.post<User>("users/profile")
+		this.authModel.profile.id = profile.id ?? ''
+		this.authModel.profile.username = profile.username ?? ''
+		this.authModel.profile.address = profile.address ?? ''
+		this.authModel.profile.city = profile.city ?? ''
+		this.authModel.profile.dateOfBirthday = profile.dateOfBirthday ?? ''
+		this.authModel.profile.email = profile.email ?? ''
+		this.authModel.profile.firstName = profile.firstName ?? ''
+		this.authModel.profile.gender = profile.gender ?? ''
+		this.authModel.profile.lastName = profile.lastName ?? ''
+		this.authModel.profile.phone = profile.phone ?? ''
+		this.authModel.profile.roles = profile.roles ?? ''
 	}
 }

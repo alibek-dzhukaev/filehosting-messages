@@ -9,7 +9,6 @@ interface UserInfoModalContentProps {
 const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => {
     return (
         <div className={styles.userDetailsGrid}>
-            {/* Username */}
             <div className={styles.detailItem}>
                 <FaUser className={styles.detailIcon} />
                 <div>
@@ -31,7 +30,6 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
                     <p>{user.lastName}</p>
                 </div>
             </div>
-            {/* Email */}
             <div className={styles.detailItem}>
                 <FaEnvelope className={styles.detailIcon} />
                 <div>
@@ -39,7 +37,6 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
                     <p>{user.email}</p>
                 </div>
             </div>
-            {/* Phone */}
             <div className={styles.detailItem}>
                 <FaPhone className={styles.detailIcon} />
                 <div>
@@ -47,7 +44,6 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
                     <p>{user.phone}</p>
                 </div>
             </div>
-            {/* Address */}
             <div className={styles.detailItem}>
                 <FaMapMarker className={styles.detailIcon} />
                 <div>
@@ -55,7 +51,6 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
                     <p>{user.address}, {user.city}, {user.city}</p>
                 </div>
             </div>
-            {/* Date of Birth */}
             <div className={styles.detailItem}>
                 <FaBirthdayCake className={styles.detailIcon} />
                 <div>
@@ -63,7 +58,6 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
                     <p>{user.dateOfBirthday}</p>
                 </div>
             </div>
-            {/* Gender */}
             <div className={styles.detailItem}>
                 <FaVenusMars className={styles.detailIcon} />
                 <div>
@@ -71,7 +65,6 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
                     <p>{user.gender}</p>
                 </div>
             </div>
-            {/* Roles */}
             <div className={styles.detailItem}>
                 <FaShieldAlt className={styles.detailIcon} />
                 <div>

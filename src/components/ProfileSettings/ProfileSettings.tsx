@@ -1,45 +1,17 @@
-import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaPhone, FaMapMarker, FaBirthdayCake, FaVenusMars, FaShieldAlt } from 'react-icons/fa'; // Import icons from react-icons
+import React, {useState} from 'react';
+import {FaBirthdayCake, FaEnvelope, FaMapMarker, FaPhone, FaShieldAlt, FaUser, FaVenusMars} from 'react-icons/fa'; // Import icons from react-icons
 import styles from './ProfileSettings.module.scss';
+import {User} from "@services/users/types";
+import {authModel} from "@/models";
+import {observer} from "mobx-react-lite";
+import {usersService} from "@/services";
 
-interface User {
-    readonly address: string | null;
-    readonly city: string | null;
-    readonly dateOfBirthday: string | null;
-    readonly email: string | null;
-    readonly firstName: string | null;
-    readonly gender: string | null;
-    readonly id: string;
-    readonly lastName: string | null;
-    readonly phone: string | null;
-    readonly roles: Role[];
-    readonly username: string;
-}
-
-interface Role {
-    id: string;
-    name: string;
-}
-
-export const ProfileSettings: React.FC = () => {
-    // Example user data (replace with actual data from your backend or state)
-    const [user, setUser] = useState<User>({
-        id: '123',
-        username: 'johndoe123',
-        email: 'john.doe@example.com',
-        firstName: 'John',
-        lastName: 'Doe',
-        phone: '+1 123-456-7890',
-        address: '123 Main St',
-        city: 'New York',
-        dateOfBirthday: '1990-01-01',
-        gender: 'Male',
-        roles: [{ id: '1', name: 'User' }],
-    });
+export const ProfileSettings: React.FC = observer(() => {
+    const [user, setUser] = useState<User>(authModel.profile);
 
     // Handle input changes
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         setUser((prevUser) => ({
             ...prevUser,
             [name]: value,
@@ -49,18 +21,27 @@ export const ProfileSettings: React.FC = () => {
     // Handle form submission
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('Updated User:', user);
-        // Add logic to save the updated user data (e.g., API call)
+        usersService.updateUser(user.id, {
+            address: user.address ?? undefined,
+            city: user.city ?? undefined,
+            email: user.email ?? undefined,
+            gender: user.gender ?? undefined,
+            roles: user.roles ?? undefined,
+            phone: user.phone ?? undefined,
+            firstName: user.firstName ?? undefined,
+            lastName: user.lastName ?? undefined,
+            username: user.username ?? undefined,
+            dateOfBirthday: user.dateOfBirthday ?? undefined
+        })
     };
 
     return (
         <div className={styles.profileSettingsPage}>
             <h1>Profile Settings</h1>
             <form onSubmit={handleSubmit} className={styles.profileForm}>
-                {/* Username */}
                 <div className={styles.formGroup}>
                     <label htmlFor="username">
-                        <FaUser /> Username
+                        <FaUser/> Username
                     </label>
                     <input
                         type="text"
@@ -69,14 +50,13 @@ export const ProfileSettings: React.FC = () => {
                         value={user.username}
                         onChange={handleInputChange}
                         className={styles.formInput}
-                        disabled // Username is typically not editable
+                        disabled
                     />
                 </div>
 
-                {/* Email */}
                 <div className={styles.formGroup}>
                     <label htmlFor="email">
-                        <FaEnvelope /> Email
+                        <FaEnvelope/> Email
                     </label>
                     <input
                         type="email"
@@ -88,11 +68,10 @@ export const ProfileSettings: React.FC = () => {
                     />
                 </div>
 
-                {/* First Name and Last Name */}
                 <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                         <label htmlFor="firstName">
-                            <FaUser /> First Name
+                            <FaUser/> First Name
                         </label>
                         <input
                             type="text"
@@ -105,7 +84,7 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="lastName">
-                            <FaUser /> Last Name
+                            <FaUser/> Last Name
                         </label>
                         <input
                             type="text"
@@ -118,11 +97,10 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Phone and Date of Birth */}
                 <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                         <label htmlFor="phone">
-                            <FaPhone /> Phone
+                            <FaPhone/> Phone
                         </label>
                         <input
                             type="tel"
@@ -135,7 +113,7 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="dateOfBirthday">
-                            <FaBirthdayCake /> Date of Birth
+                            <FaBirthdayCake/> Date of Birth
                         </label>
                         <input
                             type="date"
@@ -148,11 +126,10 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Address and City */}
                 <div className={styles.formRow}>
                     <div className={styles.formGroup}>
                         <label htmlFor="address">
-                            <FaMapMarker /> Address
+                            <FaMapMarker/> Address
                         </label>
                         <input
                             type="text"
@@ -165,7 +142,7 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="city">
-                            <FaMapMarker /> City
+                            <FaMapMarker/> City
                         </label>
                         <input
                             type="text"
@@ -178,10 +155,9 @@ export const ProfileSettings: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Gender */}
                 <div className={styles.formGroup}>
                     <label htmlFor="gender">
-                        <FaVenusMars /> Gender
+                        <FaVenusMars/> Gender
                     </label>
                     <select
                         id="gender"
@@ -192,26 +168,23 @@ export const ProfileSettings: React.FC = () => {
                     >
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Other">Other</option>
                     </select>
                 </div>
 
-                {/* Roles */}
                 <div className={styles.formGroup}>
                     <label htmlFor="roles">
-                        <FaShieldAlt /> Roles
+                        <FaShieldAlt/> Roles
                     </label>
                     <input
                         type="text"
                         id="roles"
                         name="roles"
-                        value={user.roles.map((role) => role.name).join(', ')}
+                        value={user.roles.join(', ')}
                         className={styles.formInput}
-                        disabled // Roles are typically not editable directly
+                        disabled
                     />
                 </div>
 
-                {/* Save Button */}
                 <div className={styles.formActions}>
                     <button type="submit" className={styles.saveButton}>
                         Save Changes
@@ -220,4 +193,4 @@ export const ProfileSettings: React.FC = () => {
             </form>
         </div>
     );
-};
+});

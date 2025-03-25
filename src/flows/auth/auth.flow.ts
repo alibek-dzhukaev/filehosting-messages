@@ -3,6 +3,7 @@ import {AuthModel} from "@/models/auth";
 import {AuthService} from "@services/auth";
 import { RouterService } from '@/services/router'
 import { PrivateRoutes } from '@/layouts/PrivateLayout/routes'
+import {PublicRoutes} from "@/layouts/PubicLayout/routes";
 
 @scope.container()
 export class AuthFlow {
@@ -15,8 +16,14 @@ export class AuthFlow {
     public async start() {
         await this.authService.login({
             username: this.authModel.username,
-            password: this.authModel.password
-        })
+            password: this.authModel.password,
+        });
         this.routerService.navigate(PrivateRoutes.FEED);
+    }
+
+    public async invalidateAuth() {
+        await this.authService.logout();
+        this.authModel.isAuthenticated = false;
+        this.routerService.navigate(PublicRoutes.HOME);
     }
 }

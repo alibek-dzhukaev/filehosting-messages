@@ -1,6 +1,6 @@
 import { scope } from '@config/scope.di'
 import { makeAutoObservable } from 'mobx'
-import { LoginDto, Role } from "@services/auth/types"
+import { Role } from "@services/auth/types"
 
 @scope.singleton()
 export class AuthModel {
@@ -12,13 +12,6 @@ export class AuthModel {
 
 	public constructor() {
 		makeAutoObservable(this, {}, { autoBind: true })
-	}
-
-	public get loginConfig(): LoginDto {
-		return {
-			username: this._username,
-			password: this._password,
-		}
 	}
 
 	public get username() {

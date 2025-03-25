@@ -1,8 +1,7 @@
 import {scope} from "@config/scope.di";
 import {makeAutoObservable} from "mobx";
-import {SignupDto} from "@services/auth/types";
 
-@scope.container()
+@scope.singleton()
 export class SignupModel {
     private _isLoading = false;
     private _username = '';
@@ -11,13 +10,6 @@ export class SignupModel {
     
     public constructor() {
         makeAutoObservable(this, {}, {autoBind: true})
-    }
-
-    public get signupConfig(): SignupDto {
-        return {
-            username: this._username,
-            password: this._password
-        };
     }
 
     public get password() {

@@ -3,9 +3,10 @@ import styles from './ProfileScreen.module.scss';
 import ProfileSidebar from "@components/ProfileSidebar/ProfileSidebar";
 import FileManager from "@components/ProfileContent/FileManager";
 import {useRouter} from "@/hooks/router.hook";
-import {useMemo} from "react";
+import {useEffect, useMemo} from "react";
 import {PrivateRoutes} from "@/layouts/PrivateLayout/routes";
 import {ProfileSettings} from "@components/ProfileSettings/ProfileSettings";
+import {authService} from "@/services";
 
 
 
@@ -24,6 +25,11 @@ export const ProfileScreen = () => {
                 return <FileManager />
         }
     }, [currentPath])
+
+    useEffect(() => {
+        void authService.getProfile()
+            .catch(console.error)
+    }, [])
 
     return (
         <MainLayout>

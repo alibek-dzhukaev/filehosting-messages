@@ -3,6 +3,7 @@ import { scope } from '@/config/scope.di'
 import { ApiService } from '../api'
 import {AuthenticatedUser, LoginDto, SignupDto} from './types';
 import {AuthModel} from "@/models/auth";
+import {User} from "@services/users/types";
 
 @scope.container()
 export class AuthService {
@@ -26,5 +27,10 @@ export class AuthService {
 		const authenticatedUser = await this.apiService.get<AuthenticatedUser>('auth/me')
 		this.authModel.isAuthenticated = Boolean(authenticatedUser)
 		this.authModel.role = authenticatedUser.roles[0]
+	}
+
+	public async getProfile() {
+		const profile = await this.apiService.get<User>("users/profile")
+		console.log('profile', profile)
 	}
 }

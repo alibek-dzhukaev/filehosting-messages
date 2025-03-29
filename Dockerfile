@@ -54,7 +54,7 @@ EXPOSE 5173
 
 # Set environment variables for development
 ENV NODE_ENV=development
-ENV PORT=5173
+ENV PORT=3001
 ENV HOST=0.0.0.0
 
 # Start the application in development mode

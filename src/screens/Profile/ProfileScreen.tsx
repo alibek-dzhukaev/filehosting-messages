@@ -1,7 +1,7 @@
 import MainLayout from "@components/MainLayout/MainLayout";
 import styles from './ProfileScreen.module.scss';
 import ProfileSidebar from "@components/ProfileSidebar/ProfileSidebar";
-import FileManager from "@components/ProfileContent/FileManager";
+import FileManager from "@components/FileManager/FileManager";
 import {useRouter} from "@/hooks/router.hook";
 import {useEffect, useMemo} from "react";
 import {PrivateRoutes} from "@/layouts/PrivateLayout/routes";

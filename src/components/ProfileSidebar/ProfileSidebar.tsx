@@ -10,8 +10,9 @@ import {authModel} from "@/models";
 import classNames from "classnames";
 import {authFlow} from "@/flows";
 import {BiLogOutCircle} from "react-icons/bi";
+import {observer} from "mobx-react-lite";
 
-const ProfileSidebar = () => {
+const ProfileSidebar = observer(() => {
     const {currentPath} = useRouter()
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [profileImage, setProfileImage] = useState<string>(
@@ -99,6 +100,6 @@ const ProfileSidebar = () => {
             </Modal>
         </aside>
     );
-};
+});
 
 export default ProfileSidebar;

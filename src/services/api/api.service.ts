@@ -1,12 +1,21 @@
 import { scope } from '@config/scope.di'
 
 import {RequestOptions} from './types'
+import { RateLimiter } from '@services/rate-limiter/rate-limiter.service'
 
 @scope.singleton()
 export class ApiService {
     private readonly baseUrl = 'http://localhost/api/';
 
+    public constructor(
+        private readonly rateLimiter: RateLimiter
+    ) {}
+
     private async request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
+        if (!this.rateLimiter.tryRemoveTokens()) {
+            const waitTime = this.rateLimiter.getWaitTime();
+            throw new Error(`Too many requests. Try in ${waitTime} mc`)
+        }
         const url = `${this.baseUrl}${endpoint}`;
         const headers = {
             'Content-Type': 'application/json',

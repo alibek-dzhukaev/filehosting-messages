@@ -11,7 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.[contenthash].js',
         clean: true,
-        publicPath: '/',
+        publicPath: '/messages/',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -95,6 +95,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
         },
         compress: true,
+        host: '0.0.0.0',
         port: 3001,
         hot: true,
         historyApiFallback: true,

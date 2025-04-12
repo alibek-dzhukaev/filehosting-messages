@@ -16,10 +16,9 @@ global.matchMedia = global.matchMedia || function() {
 
 afterEach(() => {
     jest.clearAllMocks();
-    try {
-        const { container } = require('tsyringe');
+    import('tsyringe').then(({ container }) => {
         container.reset();
-    } catch (e) {
-        console.warn('tsyringe container reset failed', e);
-    }
+    }).catch(err => {
+        console.warn('tsyringe import failed', err);
+    });
 });

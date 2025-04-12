@@ -10,6 +10,7 @@ const App = observer(() => {
 
     useEffect(() => {
         void authService.me()
+            .catch(console.error)
     }, [])
 
   return (

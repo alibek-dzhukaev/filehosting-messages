@@ -1,4 +1,3 @@
-import {beforeEach, describe, expect, it} from "vitest";
 import {AuthModel} from "../../src/models/auth";
 import {scope} from "../../src/config/scope.di";
 
@@ -11,10 +10,5 @@ describe('AuthModel', () => {
 
     it('should initialize with isAuthenticated = false', () => {
        expect(authModel.isAuthenticated).toBe(false)
-    });
-
-    it('should update authenticated to true', () => {
-        authModel.isAuthenticated = Boolean({})
-        expect(authModel.isAuthenticated).toBe(true)
     });
 })

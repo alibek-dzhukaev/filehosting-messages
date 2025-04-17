@@ -2,7 +2,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
     minimizer: [
-        `...`, // This extends default minimizers
+        `...`,
         new CssMinimizerPlugin({
             parallel: true,
             minimizerOptions: {

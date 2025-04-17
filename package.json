@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "webpack serve",
-    "build": "NODE_ENV=production webpack",
-    "preview": "serve dist",
+    "start": "webpack serve --config webpack/webpack.dev.js",
+    "build": "webpack --config webpack/webpack.prod.js",
+    "analyze": "webpack-bundle-analyzer webpack/reports/bundle-stats.json",
     "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -46,6 +46,7 @@
     "babel-loader": "^10.0.0",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "css-loader": "^6.11.0",
+    "css-minimizer-webpack-plugin": "^7.0.2",
     "dotenv-webpack": "^8.1.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
@@ -56,6 +57,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^26.0.0",
+    "mini-css-extract-plugin": "^2.9.2",
     "node-polyfill-webpack-plugin": "^4.1.0",
     "postcss": "^8.5.3",
     "postcss-loader": "^8.1.1",
@@ -70,7 +72,9 @@
     "typescript": "~5.7.3",
     "typescript-eslint": "^8.24.1",
     "webpack": "^5.99.5",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.1"
+    "webpack-dev-server": "^5.2.1",
+    "webpack-merge": "^6.0.1"
   }
 }

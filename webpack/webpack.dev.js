@@ -1,8 +1,7 @@
 const { merge } = require('webpack-merge');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const common = require('./webpack.common.js');
-const path = require('path')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const common = require('./webpack.common');
+const devPlugins = require('./config/dev/plugins');
+const devServer = require('./config/dev/devServer');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -28,21 +27,6 @@ module.exports = merge(common, {
             },
         ],
     },
-    plugins: [
-        new ReactRefreshWebpackPlugin(),
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'server',
-            analyzerPort: 8888,
-            openAnalyzer: false,
-        }),
-    ],
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'public'),
-        },
-        compress: true,
-        port: 3001,
-        hot: true,
-        historyApiFallback: true,
-    },
+    plugins: devPlugins,
+    devServer,
 });

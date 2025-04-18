@@ -34,11 +34,5 @@
       "@services/*": ["src/services/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.scss",
-    "src/global.d.ts",
-    "tests/**/*"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.scss", "src/global.d.ts", "tests/**/*"]
 }

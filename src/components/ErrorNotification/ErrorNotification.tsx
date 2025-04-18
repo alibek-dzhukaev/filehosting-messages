@@ -8,7 +8,11 @@ interface ErrorNotificationProps {
   onClose: () => void;
 }
 
-export const ErrorNotification: React.FC<ErrorNotificationProps> = ({ message, duration = 5000, onClose }) => {
+export const ErrorNotification: React.FC<ErrorNotificationProps> = ({
+  message,
+  duration = 5000,
+  onClose,
+}) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {

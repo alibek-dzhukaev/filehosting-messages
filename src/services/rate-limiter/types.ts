@@ -1,5 +1,5 @@
 export interface RateLimiterOptions {
-	bucketSize: number;
-	tokensPerInterval: number;
-	interval: number;
+  bucketSize: number;
+  tokensPerInterval: number;
+  interval: number;
 }

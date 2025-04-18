@@ -15,7 +15,9 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-5px); // Lift card on hover
@@ -101,7 +103,9 @@
   font-size: 1.5rem; // Icon size
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 
   &:hover {
     background-color: #2980b9; // Darker blue on hover

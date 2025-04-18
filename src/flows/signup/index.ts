@@ -1,1 +1,1 @@
-export {SignupFlow} from './signup.flow'
+export { SignupFlow } from './signup.flow';

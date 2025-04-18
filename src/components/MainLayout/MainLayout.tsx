@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Header} from '../Header/Header';
+import { Header } from '../Header/Header';
 
 import styles from './MainLayout.module.scss';
 
@@ -9,10 +9,8 @@ interface MainLayoutProps {
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => (
-    <div className={styles.mainLayout}>
-      <Header />
-      <div className={styles.container}>
-				{children}
-      </div>
-    </div>
-  );
+  <div className={styles.mainLayout}>
+    <Header />
+    <div className={styles.container}>{children}</div>
+  </div>
+);

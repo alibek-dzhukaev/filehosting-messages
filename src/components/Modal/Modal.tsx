@@ -1,77 +1,69 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 
 import styles from './Modal.module.scss';
 
 interface ModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    children: React.ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-    const [isClosing, setIsClosing] = useState(false);
-    const modalRef = useRef<HTMLDivElement>(null);
+  const [isClosing, setIsClosing] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
-    const handleClose = useCallback(() => {
-        setIsClosing(true);
-        setTimeout(() => {
-            onClose();
-            setIsClosing(false);
-        }, 300);
-    }, [onClose]);
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+    }, 300);
+  }, [onClose]);
 
-    useEffect(() => {
-        const handleEscape = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                handleClose();
-            }
-        };
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleClose();
+      }
+    };
 
-        if (isOpen) {
-            window.addEventListener('keydown', handleEscape);
-        }
+    if (isOpen) {
+      window.addEventListener('keydown', handleEscape);
+    }
 
-        return () => {
-            window.removeEventListener('keydown', handleEscape);
-        };
-    }, [handleClose, isOpen]);
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [handleClose, isOpen]);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                modalRef.current &&
-                !modalRef.current.contains(event.target as Node)
-            ) {
-                handleClose();
-            }
-        };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        handleClose();
+      }
+    };
 
-        if (isOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [handleClose, isOpen]);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClose, isOpen]);
 
-    if (!isOpen && !isClosing) return null;
+  if (!isOpen && !isClosing) return null;
 
-    return ReactDOM.createPortal(
-        <div
-            className={`${styles.modalOverlay} ${isClosing ? styles.fadeOut : ''}`}
-        >
-            <div
-                ref={modalRef}
-                className={`${styles.modalContent} ${isClosing ? styles.slideOut : ''}`}
-            >
-                <button className={styles.closeButton} onClick={handleClose}>
-                    &times;
-                </button>
-                {children}
-            </div>
-        </div>,
-        document.body
-    );
+  return ReactDOM.createPortal(
+    <div className={`${styles.modalOverlay} ${isClosing ? styles.fadeOut : ''}`}>
+      <div ref={modalRef} className={`${styles.modalContent} ${isClosing ? styles.slideOut : ''}`}>
+        <button className={styles.closeButton} onClick={handleClose}>
+          &times;
+        </button>
+        {children}
+      </div>
+    </div>,
+    document.body,
+  );
 };

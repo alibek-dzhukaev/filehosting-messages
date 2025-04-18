@@ -1,1 +1,1 @@
-export {SignupModel} from './signup.model'
+export { SignupModel } from './signup.model';

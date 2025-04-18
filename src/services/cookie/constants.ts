@@ -1,3 +1,3 @@
 export const enum CookieNames {
-    XSRF_TOKEN = 'x_xsrf_token'
+  XSRF_TOKEN = 'x_xsrf_token',
 }

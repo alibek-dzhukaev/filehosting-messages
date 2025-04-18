@@ -1,1 +1,1 @@
-export {UsersModel} from './users'
+export { UsersModel } from './users';

@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
-import {FaBirthdayCake, FaEnvelope, FaMapMarker, FaPhone, FaShieldAlt, FaUser, FaVenusMars} from 'react-icons/fa'; // Import icons from react-icons
-import styles from './ProfileSettings.module.scss';
-import {User} from "@services/users/types";
-import {authModel} from "@/models";
+
 import {observer} from "mobx-react-lite";
+import {FaBirthdayCake, FaEnvelope, FaMapMarker, FaPhone, FaShieldAlt, FaUser, FaVenusMars} from 'react-icons/fa'; // Import icons from react-icons
+
+import {authModel} from "@/models";
 import {usersService} from "@/services";
+
+import styles from './ProfileSettings.module.scss';
+
+import type {User} from "@services/users/types";
+
 
 export const ProfileSettings: React.FC = observer(() => {
     const [user, setUser] = useState<User>(authModel.profile);
@@ -12,6 +17,7 @@ export const ProfileSettings: React.FC = observer(() => {
     // Handle input changes
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = event.target;
+
         setUser((prevUser) => ({
             ...prevUser,
             [name]: value,
@@ -21,7 +27,7 @@ export const ProfileSettings: React.FC = observer(() => {
     // Handle form submission
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        usersService.updateUser(user.id, {
+        void usersService.updateUser(user.id, {
             address: user.address ?? undefined,
             city: user.city ?? undefined,
             email: user.email ?? undefined,
@@ -62,7 +68,7 @@ export const ProfileSettings: React.FC = observer(() => {
                         type="email"
                         id="email"
                         name="email"
-                        value={user.email || ''}
+                        value={user.email ?? ''}
                         onChange={handleInputChange}
                         className={styles.formInput}
                     />
@@ -77,7 +83,7 @@ export const ProfileSettings: React.FC = observer(() => {
                             type="text"
                             id="firstName"
                             name="firstName"
-                            value={user.firstName || ''}
+                            value={user.firstName ?? ''}
                             onChange={handleInputChange}
                             className={styles.formInput}
                         />
@@ -90,7 +96,7 @@ export const ProfileSettings: React.FC = observer(() => {
                             type="text"
                             id="lastName"
                             name="lastName"
-                            value={user.lastName || ''}
+                            value={user.lastName ?? ''}
                             onChange={handleInputChange}
                             className={styles.formInput}
                         />
@@ -106,7 +112,7 @@ export const ProfileSettings: React.FC = observer(() => {
                             type="tel"
                             id="phone"
                             name="phone"
-                            value={user.phone || ''}
+                            value={user.phone ?? ''}
                             onChange={handleInputChange}
                             className={styles.formInput}
                         />
@@ -119,7 +125,7 @@ export const ProfileSettings: React.FC = observer(() => {
                             type="date"
                             id="dateOfBirthday"
                             name="dateOfBirthday"
-                            value={user.dateOfBirthday || ''}
+                            value={user.dateOfBirthday ?? ''}
                             onChange={handleInputChange}
                             className={styles.formInput}
                         />
@@ -135,7 +141,7 @@ export const ProfileSettings: React.FC = observer(() => {
                             type="text"
                             id="address"
                             name="address"
-                            value={user.address || ''}
+                            value={user.address ?? ''}
                             onChange={handleInputChange}
                             className={styles.formInput}
                         />
@@ -148,7 +154,7 @@ export const ProfileSettings: React.FC = observer(() => {
                             type="text"
                             id="city"
                             name="city"
-                            value={user.city || ''}
+                            value={user.city ?? ''}
                             onChange={handleInputChange}
                             className={styles.formInput}
                         />
@@ -162,7 +168,7 @@ export const ProfileSettings: React.FC = observer(() => {
                     <select
                         id="gender"
                         name="gender"
-                        value={user.gender || ''}
+                        value={user.gender ?? ''}
                         onChange={handleInputChange}
                         className={styles.formInput}
                     >

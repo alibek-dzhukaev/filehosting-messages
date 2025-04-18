@@ -1,5 +1,6 @@
-import {scope} from "@config/scope.di";
 import {makeAutoObservable} from "mobx";
+
+import {scope} from "@config/scope.di";
 
 @scope.singleton()
 export class SignupModel {

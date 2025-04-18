@@ -1,14 +1,14 @@
 import { Link } from '@components/Link/Link';
+
 import styles from './AboutScreen.module.scss';
 
-export const AboutScreen = () => {
-  return (
+export const AboutScreen = () => (
     <div className={styles.aboutContainer}>
       <div className={styles.aboutContent}>
         <h1>About Our Messaging Platform</h1>
         <p>
           Our platform is designed to help you stay connected with your friends, family, and colleagues through seamless
-          direct messaging and group channels. Whether you're collaborating on a project or just catching up, we've got
+          direct messaging and group channels. Whether you&apos;re collaborating on a project or just catching up, we`&apos;ve got
           you covered.
         </p>
         <p>
@@ -21,4 +21,3 @@ export const AboutScreen = () => {
       </div>
     </div>
   );
-};

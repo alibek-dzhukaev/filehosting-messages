@@ -1,9 +1,10 @@
 const path = require('path')
-const { PROJECT_ROOT, BUILD_DIR } = require('./constants');
+
+const aliases = require('./config/common/aliases');
 const commonModules = require('./config/common/modules');
 const commonPlugins = require('./config/common/plugins');
-const aliases = require('./config/common/aliases');
 const moduleFederation = require('./config/moduleFederation');
+const { PROJECT_ROOT, BUILD_DIR } = require('./constants');
 
 const commonConfig = {
     entry: path.join(PROJECT_ROOT, 'src/main.tsx'),

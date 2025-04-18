@@ -1,6 +1,6 @@
 const { ModuleFederationPlugin } = require('webpack').container;
 
-module.exports = (isProduction = false) => {
+module.exports = () => {
     const sharedDependencies = {
         'react': {
             singleton: true,

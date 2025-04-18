@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -8,7 +9,7 @@ interface PaginationProps {
     paginate: (pageNumber: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: React.FC<PaginationProps> = ({
                                                    filesPerPage,
                                                    totalFiles,
                                                    currentPage,
@@ -39,5 +40,3 @@ const Pagination: React.FC<PaginationProps> = ({
         </nav>
     );
 };
-
-export default Pagination;

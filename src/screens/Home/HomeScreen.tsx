@@ -1,8 +1,9 @@
 import { Link } from '@/components/Link/Link';
+
 import styles from './HomeScreen.module.scss';
 
-export const HomeScreen = () => {
-  return (
+
+export const HomeScreen = () => (
       <div className={styles.landingContainer}>
         <div className={styles.heroSection}>
           <h1>Welcome to Our File Hosting Platform</h1>
@@ -21,4 +22,3 @@ export const HomeScreen = () => {
         </div>
       </div>
   );
-};

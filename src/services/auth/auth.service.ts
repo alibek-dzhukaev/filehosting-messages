@@ -1,9 +1,12 @@
 import {scope} from '@/config/scope.di'
-
-import {ApiService} from '../api'
-import {AuthenticatedUser, LoginDto, SignupDto} from './types';
 import {AuthModel} from "@/models/auth";
 import {User} from "@services/users/types";
+
+import {ApiService} from '../api'
+
+import {AuthenticatedUser, LoginDto, SignupDto} from './types';
+
+
 
 @scope.container()
 export class AuthService {
@@ -28,12 +31,14 @@ export class AuthService {
 
 	public async me() {
 		const authenticatedUser = await this.apiService.get<AuthenticatedUser>('auth/me')
+
 		this.authModel.isAuthenticated = Boolean(authenticatedUser)
 		this.authModel.role = authenticatedUser.roles[0]
 	}
 
 	public async getProfile() {
 		const profile = await this.apiService.post<User>("users/profile")
+
 		this.authModel.profile.id = profile.id ?? ''
 		this.authModel.profile.username = profile.username ?? ''
 		this.authModel.profile.address = profile.address ?? ''

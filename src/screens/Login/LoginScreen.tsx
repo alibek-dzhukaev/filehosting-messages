@@ -1,15 +1,19 @@
-import {FormEvent} from 'react';
-import styles from './LoginScreen.module.scss';
-import {authModel} from '@/models'
-import {authFlow} from '@/flows'
-import ScreenContainer from '@/components/ScreenContainer/ScreenContainer'
-import AuthBox from '@/components/AuthBox/AuthBox'
+import type {FormEvent} from 'react';
+
 import {observer} from "mobx-react-lite";
+
+
+import {AuthBox} from '@/components/AuthBox/AuthBox'
+import {ScreenContainer} from '@/components/ScreenContainer/ScreenContainer'
+import {authFlow} from '@/flows'
+import {authModel} from '@/models'
+
+import styles from './LoginScreen.module.scss';
 
 export const LoginScreen = observer(() => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        authFlow.start()
+        void authFlow.start()
     };
 
     return (

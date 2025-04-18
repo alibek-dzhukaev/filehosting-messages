@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+
 import { FaPaperPlane } from 'react-icons/fa'; // Import send icon
+
 import styles from './InputSection.module.scss';
 
-const InputSection: React.FC = () => {
+export const InputSection: React.FC = () => {
     const [message, setMessage] = useState<string>('');
 
     return (
@@ -23,5 +25,3 @@ const InputSection: React.FC = () => {
         </div>
     );
 };
-
-export default InputSection;

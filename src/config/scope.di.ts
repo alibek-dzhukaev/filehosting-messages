@@ -7,6 +7,7 @@ export const scope = {
 		return function (target: Constructor<T, Args>) {
 			injectable()(target);
 			container.register(target.name, { useClass: target });
+
 			return target;
 		};
 	},
@@ -14,6 +15,7 @@ export const scope = {
 		return function (target: Constructor<T, Args>) {
 			injectable()(target);
 			container.registerSingleton(target.name, target);
+
 			return target;
 		};
 	},
@@ -29,7 +31,8 @@ export const scope = {
 			parameterIndex: number
 		) {
 			const resolvedToken = typeof token === 'function' ? token.name : token;
-			inject(resolvedToken)(target, propertyKey as string | symbol, parameterIndex);
+
+			inject(resolvedToken)(target, propertyKey, parameterIndex);
 		};
 	}
 };

@@ -1,7 +1,6 @@
 import styles from './FilesSidebar.module.scss'
 
-const FilesSidebar = () => {
-	return  (
+export const FilesSidebar = () => (
 		<aside className={styles.sidebar}>
           <h3 className={styles.sidebarHeader}>Users</h3>
           <ul className={styles.userList}>
@@ -32,6 +31,3 @@ const FilesSidebar = () => {
           </ul>
         </aside>
 	)
-}
-
-export default FilesSidebar;

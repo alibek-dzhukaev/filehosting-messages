@@ -1,18 +1,23 @@
-import { useState } from 'react';
-import { FaEdit, FaFolderOpen, FaInfoCircle } from 'react-icons/fa';
-import styles from './ProfileSidebar.module.scss';
-import Modal from '@components/Modal/Modal';
-import UserInfoModalContent from '@components/UserInfoModalContent/UserInfoModalContent';
-import { Link } from '@components/Link/Link';
-import { PrivateRoutes } from '@/layouts/PrivateLayout/routes';
-import {useRouter} from "@/hooks/router.hook";
-import {authModel} from "@/models";
-import classNames from "classnames";
-import {authFlow} from "@/flows";
-import {BiLogOutCircle} from "react-icons/bi";
-import {observer} from "mobx-react-lite";
+import React, { useState } from 'react';
 
-const ProfileSidebar = observer(() => {
+import classNames from "classnames";
+import {observer} from "mobx-react-lite";
+import {BiLogOutCircle} from "react-icons/bi";
+import { FaEdit, FaFolderOpen, FaInfoCircle } from 'react-icons/fa';
+
+
+import {authFlow} from "@/flows";
+import {useRouter} from "@/hooks/router.hook";
+import { PrivateRoutes } from '@/layouts/PrivateLayout/routes';
+import {authModel} from "@/models";
+import { Link } from '@components/Link/Link';
+import {Modal} from '@components/Modal/Modal';
+import {UserInfoModalContent} from '@components/UserInfoModalContent/UserInfoModalContent';
+
+import styles from './ProfileSidebar.module.scss';
+
+
+export const ProfileSidebar = observer(() => {
     const {currentPath} = useRouter()
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [profileImage, setProfileImage] = useState<string>(
@@ -23,8 +28,10 @@ const ProfileSidebar = observer(() => {
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
+
         if (file) {
             const reader = new FileReader();
+
             reader.onload = (e) => {
                 if (e.target?.result) {
                     setProfileImage(e.target.result as string);
@@ -101,5 +108,3 @@ const ProfileSidebar = observer(() => {
         </aside>
     );
 });
-
-export default ProfileSidebar;

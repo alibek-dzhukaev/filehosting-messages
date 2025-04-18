@@ -1,8 +1,9 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common');
-const prodPlugins = require('./config/prod/plugins');
-const prodOptimization = require('./config/prod/optimization');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { merge } = require('webpack-merge');
+
+const prodOptimization = require('./config/prod/optimization');
+const prodPlugins = require('./config/prod/plugins');
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
     mode: 'production',

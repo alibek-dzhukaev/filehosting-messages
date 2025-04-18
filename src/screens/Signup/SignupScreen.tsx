@@ -1,12 +1,17 @@
-import { FormEvent, useState } from 'react';
-import styles from './SignupScreen.module.scss';
-import { Link } from '@/components/Link/Link'
-import ErrorNotification from '@/components/ErrorNotification/ErrorNotification'
-import { signupFlow } from '@/flows'
+import type { FormEvent} from 'react';
+import { useState } from 'react';
+
 import { observer } from 'mobx-react-lite'
+
+
+import {AuthBox} from '@/components/AuthBox/AuthBox'
+import {ErrorNotification} from '@/components/ErrorNotification/ErrorNotification'
+import { Link } from '@/components/Link/Link'
+import {ScreenContainer} from '@/components/ScreenContainer/ScreenContainer'
+import { signupFlow } from '@/flows'
 import { signupModel } from '@/models'
-import ScreenContainer from '@/components/ScreenContainer/ScreenContainer'
-import AuthBox from '@/components/AuthBox/AuthBox'
+
+import styles from './SignupScreen.module.scss';
 
 export const SignupScreen = observer(() => {
   const [error, setError] = useState<string | null>(null);
@@ -15,12 +20,11 @@ export const SignupScreen = observer(() => {
     e.preventDefault();
     if (signupModel.password !== signupModel.confirmPassword) {
       setError('Passwords do not match!');
+
       return;
     }
     signupFlow.start()
-        .catch(error => {
-          setError(error.message)
-        })
+        .catch(console.error)
   };
 
   const clearError = () => {

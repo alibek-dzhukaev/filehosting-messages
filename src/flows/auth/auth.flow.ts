@@ -1,9 +1,10 @@
-import {scope} from "@config/scope.di";
-import {AuthModel} from "@/models/auth";
-import {AuthService} from "@services/auth";
-import { RouterService } from '@/services/router'
+
 import { PrivateRoutes } from '@/layouts/PrivateLayout/routes'
 import {PublicRoutes} from "@/layouts/PubicLayout/routes";
+import {AuthModel} from "@/models/auth";
+import { RouterService } from '@/services/router'
+import {scope} from "@config/scope.di";
+import {AuthService} from "@services/auth";
 
 @scope.container()
 export class AuthFlow {

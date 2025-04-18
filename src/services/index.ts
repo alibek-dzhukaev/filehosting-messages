@@ -1,11 +1,12 @@
 import { scope } from '@config/scope.di'
+import {CookieService} from "@services/cookie";
+import {StorageService} from "@services/storage/storage.service";
 
-import { RouterService } from './router'
-import { UsersService } from './users'
 import { ApiService } from './api'
 import { AuthService } from './auth'
-import {StorageService} from "@services/storage/storage.service";
-import {CookieService} from "@services/cookie";
+import { RouterService } from './router'
+import { UsersService } from './users'
+
 
 export const routerService = scope.resolve(RouterService);
 export const apiService = scope.resolve(ApiService);

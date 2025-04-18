@@ -1,10 +1,16 @@
-import {FC, useMemo} from "react"
-import {PrivateRoutes} from './routes'
-import {FeedScreen} from '@/screens/Feed/FeedScreen'
-import {useRouter} from '@/hooks/router.hook'
+import type {FC} from "react";
+import { useMemo} from "react"
+
 import {observer} from 'mobx-react-lite'
+
+
+import {useRouter} from '@/hooks/router.hook'
+import {FeedScreen} from '@/screens/Feed/FeedScreen'
 import {FileHosting} from '@/screens/FileHosting/FileHosting'
 import {ProfileScreen} from "@screens/Profile/ProfileScreen";
+
+import {PrivateRoutes} from './routes'
+
 
 export const PrivateLayout: FC = observer(() => {
     const { currentPath, router } = useRouter()
@@ -18,6 +24,7 @@ export const PrivateLayout: FC = observer(() => {
                 return <ProfileScreen />
             default:
                 router.navigate(PrivateRoutes.FEED)
+
                 return <FeedScreen />
         }
     }, [currentPath, router])

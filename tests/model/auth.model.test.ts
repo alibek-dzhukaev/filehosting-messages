@@ -1,5 +1,5 @@
-import {AuthModel} from "../../src/models/auth";
 import {scope} from "../../src/config/scope.di";
+import {AuthModel} from "../../src/models/auth";
 
 describe('AuthModel', () => {
     let authModel: AuthModel

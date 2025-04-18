@@ -1,5 +1,6 @@
+import type {FC} from "react";
+
 import {PrivateLayout, PublicLayout} from "@/layouts";
-import {FC} from "react";
 
 interface Props {
     isAuthenticated: boolean;
@@ -11,6 +12,7 @@ export const AuthGuard: FC<Props> = ({isAuthenticated}) => {
             <PrivateLayout/>
         )
     }
+
     return (
         <PublicLayout/>
     )

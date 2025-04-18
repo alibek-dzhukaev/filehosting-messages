@@ -1,9 +1,12 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
+
+import {FileCard} from '@/components/FileCard/FileCard'
+import {FilesSidebar} from "@components/FilesSidebar/FilesSidebar";
+import {MainLayout} from "@components/MainLayout/MainLayout";
+import {Pagination} from "@components/Pagination/Pagination";
+
 import styles from './FileHosting.module.scss';
-import FileCard from '@/components/FileCard/FileCard'
-import Pagination from "@components/Pagination/Pagination";
-import MainLayout from "@components/MainLayout/MainLayout";
-import FilesSidebar from "@components/FilesSidebar/FilesSidebar";
+
 
 interface File {
     id: number;
@@ -28,6 +31,7 @@ export const FileHosting: React.FC = () => {
                 size: '1.2MB',
                 thumbnail: `https://a.storyblok.com/f/178900/750x422/25afc1b5e3/0280c99a837190e4ae1b55577c2708851651837601_main.jpg/m/filters:quality(95)format(webp)`,
             }));
+
             setFiles(newFiles);
         };
 
@@ -38,6 +42,7 @@ export const FileHosting: React.FC = () => {
     useEffect(() => {
         const updateFilesPerPage = () => {
             const screenWidth = window.innerWidth;
+
             if (screenWidth < 600) {
                 setFilesPerPage(4);
             } else if (screenWidth < 900) {

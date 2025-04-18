@@ -68,6 +68,7 @@ export class RouterService {
      */
     public executeCurrentRoute(): void {
         const handler = this.routes[this.currentPath];
+
         if (handler) {
             handler();
         } else {

@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef, useCallback} from 'react';
 import ReactDOM from 'react-dom';
+
 import styles from './Modal.module.scss';
 
 interface ModalProps {
@@ -8,9 +9,17 @@ interface ModalProps {
     children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     const [isClosing, setIsClosing] = useState(false);
     const modalRef = useRef<HTMLDivElement>(null);
+
+    const handleClose = useCallback(() => {
+        setIsClosing(true);
+        setTimeout(() => {
+            onClose();
+            setIsClosing(false);
+        }, 300);
+    }, [onClose]);
 
     useEffect(() => {
         const handleEscape = (event: KeyboardEvent) => {
@@ -26,7 +35,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         return () => {
             window.removeEventListener('keydown', handleEscape);
         };
-    }, [isOpen]);
+    }, [handleClose, isOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -45,15 +54,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [isOpen]);
-
-    const handleClose = useCallback(() => {
-        setIsClosing(true);
-        setTimeout(() => {
-            onClose();
-            setIsClosing(false);
-        }, 300);
-    }, []);
+    }, [handleClose, isOpen]);
 
     if (!isOpen && !isClosing) return null;
 
@@ -74,5 +75,3 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         document.body
     );
 };
-
-export default Modal;

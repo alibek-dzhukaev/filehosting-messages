@@ -1,7 +1,11 @@
 import React from 'react';
-import styles from './BackButton.module.scss';
+
 import { FaArrowLeft } from 'react-icons/fa';
+
 import { routerService } from '@/services'
+
+import styles from './BackButton.module.scss';
+
 
 export const BackButton: React.FC = () => {
   const handleClick = () => {

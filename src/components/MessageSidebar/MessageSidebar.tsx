@@ -1,9 +1,10 @@
 import React from 'react';
-import { FaHashtag, FaUserFriends } from 'react-icons/fa'; // Import icons
+
+import { FaHashtag, FaUserFriends } from 'react-icons/fa';
+
 import styles from './MessageSidebar.module.scss';
 
-const MessageSidebar: React.FC = () => {
-  return (
+export const MessageSidebar: React.FC = () => (
     <aside className={styles.sidebar}>
       <div className={styles.section}>
         <h3 className={styles.sectionHeader}>
@@ -28,6 +29,3 @@ const MessageSidebar: React.FC = () => {
       </div>
     </aside>
   );
-};
-
-export default MessageSidebar;

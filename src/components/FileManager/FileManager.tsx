@@ -1,6 +1,8 @@
-import {useState} from "react";
-import styles from './FileManager.module.scss'
+import React, {useState} from "react";
+
 import {FaUpload} from "react-icons/fa";
+
+import styles from './FileManager.module.scss'
 
 interface File {
     id: number
@@ -10,12 +12,13 @@ interface File {
     thumbnail: string
 }
 
-const FileManager: React.FC = () => {
+export const FileManager: React.FC = () => {
     const [files, setFiles] = useState<File[]>([]); // State to store uploaded files
 
     // Simulate file upload
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const uploadedFiles = event.target.files;
+
         if (uploadedFiles) {
             const newFiles = Array.from(uploadedFiles).map((file, index) => ({
                 id: files.length + index + 1, // Unique ID for each file
@@ -24,6 +27,7 @@ const FileManager: React.FC = () => {
                 type: file.type.split('/')[1], // Extract file type (e.g., jpeg, pdf)
                 thumbnail: URL.createObjectURL(file), // Generate a thumbnail for images
             }));
+
             setFiles([...files, ...newFiles]);
         }
     };
@@ -79,5 +83,3 @@ const FileManager: React.FC = () => {
         </div>
     );
 };
-
-export default FileManager;

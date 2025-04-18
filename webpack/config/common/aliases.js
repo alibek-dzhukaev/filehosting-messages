@@ -1,5 +1,6 @@
-const { SRC_DIR } = require('../../constants');
 const path = require('path');
+
+const { SRC_DIR } = require('../../constants');
 
 module.exports = {
     '@': SRC_DIR,

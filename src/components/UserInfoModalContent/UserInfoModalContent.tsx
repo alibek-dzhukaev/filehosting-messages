@@ -1,13 +1,16 @@
+import React from 'react'
+
 import { FaUser, FaEnvelope, FaPhone, FaMapMarker, FaBirthdayCake, FaVenusMars, FaShieldAlt } from 'react-icons/fa';
+
 import styles from  './UserInfoModalContent.module.scss'
-import {User} from "@services/users/types";
+
+import type {User} from "@services/users/types";
 
 interface UserInfoModalContentProps {
     user: User
 }
 
-const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => {
-    return (
+export const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => (
         <div className={styles.userDetailsGrid}>
             <div className={styles.detailItem}>
                 <FaUser className={styles.detailIcon} />
@@ -74,6 +77,3 @@ const UserInfoModalContent: React.FC<UserInfoModalContentProps> = ({ user }) => 
             </div>
         </div>
     );
-};
-
-export default UserInfoModalContent;

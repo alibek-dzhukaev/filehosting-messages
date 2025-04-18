@@ -1,10 +1,14 @@
-import {FC, useMemo} from "react"
+import type {FC} from "react";
+import { useMemo} from "react"
 
-import { LoginScreen } from "@screens/Login/LoginScreen"
+
+
 import { useRouter } from "@/hooks/router.hook"
 import { AboutScreen } from '@/screens/About/AboutScreen'
 import { HomeScreen } from '@/screens/Home/HomeScreen'
 import { SignupScreen } from '@/screens/Signup/SignupScreen'
+import { LoginScreen } from "@screens/Login/LoginScreen"
+
 import { PublicRoutes } from './routes'
 
 export const PublicLayout: FC = () => {
@@ -20,6 +24,7 @@ export const PublicLayout: FC = () => {
                 return <SignupScreen />
             default:
                 router.navigate(PublicRoutes.HOME)
+
                 return <HomeScreen />
         }
     }, [currentPath, router])

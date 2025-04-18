@@ -1,7 +1,9 @@
-import {scope} from '@config/scope.di'
-import {ApiService} from '../api'
-import {UpdateUserDto, User} from "@services/users/types";
 import {UsersModel} from "@/models/users";
+import {scope} from '@config/scope.di'
+import {UpdateUserDto, User} from "@services/users/types";
+
+import {ApiService} from '../api'
+
 
 @scope.container()
 export class UsersService {

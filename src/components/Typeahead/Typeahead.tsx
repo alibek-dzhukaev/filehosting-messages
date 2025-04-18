@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
+
 import { FaSearch } from 'react-icons/fa';
+
 import styles from './Typeahead.module.scss';
 
 interface TypeaheadProps {
-    onSearch: (query: string) => void; // Callback for search
-    placeholder?: string; // Placeholder text
+    onSearch: (query: string) => void;
+    placeholder?: string;
 }
 
-const Typeahead: React.FC<TypeaheadProps> = ({ onSearch, placeholder = 'Search...' }) => {
+export const Typeahead: React.FC<TypeaheadProps> = ({ onSearch, placeholder = 'Search...' }) => {
     const [query, setQuery] = useState<string>('');
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    // Debounce the search input
     useEffect(() => {
         const debounceTimer = setTimeout(() => {
             if (query.trim()) {
                 onSearch(query);
             }
-        }, 300); // 300ms debounce delay
+        }, 300);
 
         return () => clearTimeout(debounceTimer);
     }, [query, onSearch]);
@@ -32,7 +33,7 @@ const Typeahead: React.FC<TypeaheadProps> = ({ onSearch, placeholder = 'Search..
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => setIsFocused(true)}
-                onBlur={() => setTimeout(() => setIsFocused(false), 200)} // Delay to allow click on dropdown
+                onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
             {/* Dropdown for suggestions */}
             {isFocused && query.trim() && (
@@ -45,5 +46,3 @@ const Typeahead: React.FC<TypeaheadProps> = ({ onSearch, placeholder = 'Search..
         </div>
     );
 };
-
-export default Typeahead;

@@ -1,4 +1,4 @@
-import { RateLimiterOptions } from './types'
+import type { RateLimiterOptions } from './types'
 
 export class RateLimiter {
 	private readonly options: RateLimiterOptions = {
@@ -14,8 +14,10 @@ export class RateLimiter {
 		this.refill();
 		if (this.bucket >= count) {
 			this.bucket -= count;
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -26,6 +28,7 @@ export class RateLimiter {
 		}
 		const tokensNeeded = count - this.bucket;
 		const intervalsNeeded = Math.ceil(tokensNeeded / this.options.tokensPerInterval);
+
 		return intervalsNeeded * this.options.interval - (Date.now() - this.lastRefillTime);
 	}
 
@@ -35,6 +38,7 @@ export class RateLimiter {
 		
 		if (timePassed > this.options.interval) {
 			const tokensToAdd = Math.floor(timePassed / this.options.interval) * this.options.tokensPerInterval;
+
 			this.bucket = Math.min(this.bucket * tokensToAdd, this.options.bucketSize);
 			this.lastRefillTime = now;
 		}

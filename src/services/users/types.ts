@@ -1,4 +1,4 @@
-import {Role} from "@services/auth/types";
+import type {Role} from "@services/auth/types";
 
 export interface User {
     address: string | null

@@ -1,7 +1,11 @@
 import React from 'react';
+
 import classNames from 'classnames';
-import styles from './Link.module.scss';
+
 import {routerService} from "@/services";
+
+import styles from './Link.module.scss';
+
 
 interface LinkProps {
     to: string;

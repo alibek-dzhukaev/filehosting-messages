@@ -1,7 +1,11 @@
 import React from 'react'
-import styles from './AuthBox.module.scss'
-import { BackButton } from '../BackButton/BackButton'
+
 import { routerService } from '@/services'
+
+import { BackButton } from '../BackButton/BackButton'
+
+import styles from './AuthBox.module.scss'
+
 
 interface AuthBoxProps {
   title: string
@@ -9,8 +13,7 @@ interface AuthBoxProps {
 
 }
 
-const AuthBox: React.FC<AuthBoxProps> = ({ title, children }) => {
-  return (
+export const AuthBox: React.FC<AuthBoxProps> = ({ title, children }) => (
     <div className={styles.authBox}>
       {routerService.canGoBack && (
         <BackButton />
@@ -19,6 +22,3 @@ const AuthBox: React.FC<AuthBoxProps> = ({ title, children }) => {
       {children}
     </div>
   )
-}
-
-export default AuthBox

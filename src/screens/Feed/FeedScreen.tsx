@@ -1,10 +1,11 @@
-import MainLayout from '@/components/MainLayout/MainLayout'
-import Messenger from '@/components/Messenger/Messenger'
-import styles from './FeedScreen.module.scss'
-import MessageSidebar from '@/components/MessageSidebar/MessageSidebar'
 
-export const FeedScreen = () => {
-	return (
+import {MainLayout} from '@/components/MainLayout/MainLayout'
+import {MessageSidebar} from '@/components/MessageSidebar/MessageSidebar'
+import {Messenger} from '@/components/Messenger/Messenger'
+
+import styles from './FeedScreen.module.scss'
+
+export const FeedScreen = () => (
 		<MainLayout>
 			<MessageSidebar />
 			<main className={styles.mainContent}>
@@ -12,4 +13,3 @@ export const FeedScreen = () => {
 			</main>
 		</MainLayout>
 	)
-}

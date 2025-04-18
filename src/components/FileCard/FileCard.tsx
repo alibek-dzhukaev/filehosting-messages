@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+
 import { FaDownload, FaTrash, FaEllipsisV } from 'react-icons/fa'; // Import icons
+
 import styles from './FileCard.module.scss';
 
 interface FileCardProps {
@@ -12,7 +14,7 @@ interface FileCardProps {
   };
 }
 
-const FileCard: React.FC<FileCardProps> = ({ file }) => {
+export const FileCard: React.FC<FileCardProps> = ({ file }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -47,5 +49,3 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
     </div>
   );
 };
-
-export default FileCard;

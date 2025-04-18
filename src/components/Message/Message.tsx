@@ -7,8 +7,7 @@ interface Props {
     text: string;
 }
 
-const Message = ({author, time, imageUrl, text}: Props) => {
-    return (
+export const Message = ({author, time, imageUrl, text}: Props) => (
         <div className={styles.message}>
             <div className={styles.avatar}>
                 <img src={imageUrl} alt={author} />
@@ -22,6 +21,3 @@ const Message = ({author, time, imageUrl, text}: Props) => {
             </div>
         </div>
     );
-};
-
-export default Message;

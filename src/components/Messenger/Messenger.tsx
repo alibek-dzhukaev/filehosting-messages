@@ -1,10 +1,11 @@
 import React from 'react';
-import styles from './Messenger.module.scss';
-import Message from "@components/Message/Message";
-import InputSection from "@components/InputSection/InputSection";
 
-const Messenger: React.FC = () => {
-  return (
+import {InputSection} from "@components/InputSection/InputSection";
+import {Message} from "@components/Message/Message";
+
+import styles from './Messenger.module.scss';
+
+export const Messenger: React.FC = () => (
     <div className={styles.messenger}>
       {/* Message Display Section */}
       <div className={styles.messageDisplay}>
@@ -26,6 +27,3 @@ const Messenger: React.FC = () => {
       <InputSection />
     </div>
   );
-};
-
-export default Messenger;

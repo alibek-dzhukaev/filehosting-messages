@@ -1,8 +1,12 @@
-import {FC, ReactNode, useEffect, useState} from "react";
-import {routerService} from "@/services";
-import {RouteHandler} from "@services/router/types";
-import {RouterService} from "@services/router";
+import type {FC, ReactNode} from "react";
+import { useEffect, useState} from "react";
+
 import {RouterContext} from "@/hooks/router.hook";
+import {routerService} from "@/services";
+
+import type {RouterService} from "@services/router";
+import type {RouteHandler} from "@services/router/types";
+
 
 interface RouterProviderProps {
     router: RouterService;
@@ -18,6 +22,7 @@ export const RouterProvider: FC<RouterProviderProps> = ({router, children}) => {
         };
 
         routerService.subscribe(handleRouteChange);
+
         return () => routerService.unsubscribe(handleRouteChange);
     })
 

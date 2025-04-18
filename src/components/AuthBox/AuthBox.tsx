@@ -1,24 +1,20 @@
-import React from 'react'
-import styles from './AuthBox.module.scss'
-import { BackButton } from '../BackButton/BackButton'
-import { routerService } from '@/services'
+import React from 'react';
+
+import { routerService } from '@/services';
+
+import { BackButton } from '../BackButton/BackButton';
+
+import styles from './AuthBox.module.scss';
 
 interface AuthBoxProps {
-  title: string
-  children: React.ReactNode
-
+  title: string;
+  children: React.ReactNode;
 }
 
-const AuthBox: React.FC<AuthBoxProps> = ({ title, children }) => {
-  return (
-    <div className={styles.authBox}>
-      {routerService.canGoBack && (
-        <BackButton />
-      )}
-      <h2>{title}</h2>
-      {children}
-    </div>
-  )
-}
-
-export default AuthBox
+export const AuthBox: React.FC<AuthBoxProps> = ({ title, children }) => (
+  <div className={styles.authBox}>
+    {routerService.canGoBack && <BackButton />}
+    <h2>{title}</h2>
+    {children}
+  </div>
+);

@@ -1,2 +1,2 @@
-export {PrivateLayout} from './PrivateLayout'
-export {PublicLayout} from './PubicLayout'
+export { PrivateLayout } from './PrivateLayout';
+export { PublicLayout } from './PubicLayout';

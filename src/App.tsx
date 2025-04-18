@@ -1,27 +1,21 @@
-import {authService, routerService} from './services'
-import {observer} from "mobx-react-lite";
-import {authModel} from "@/models";
-import {AuthGuard} from "@components/AuthGuard/AuthGuard";
-import {RouterProvider} from "@/contexts/router/RouterContext";
-import {useEffect} from "react";
+import { useEffect } from 'react';
 
+import { observer } from 'mobx-react-lite';
 
-const App = observer(() => {
+import { RouterProvider } from '@/contexts/router/RouterContext';
+import { authModel } from '@/models';
+import { AuthGuard } from '@components/AuthGuard/AuthGuard';
 
-    useEffect(() => {
-        void authService.me()
-            .catch(console.error)
-    }, [])
+import { authService, routerService } from './services';
+
+export const App = observer(() => {
+  useEffect(() => {
+    void authService.me().catch(console.error);
+  }, []);
 
   return (
-    <AuthGuard isAuthenticated={authModel.isAuthenticated}>
-
-    </AuthGuard>
-  )
-})
-
-export const fileHostingApplication = (
     <RouterProvider router={routerService}>
-        <App />
+      <AuthGuard isAuthenticated={authModel.isAuthenticated} />
     </RouterProvider>
-)
+  );
+});

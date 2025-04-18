@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useInfiniteScroll = (loadMore: () => Promise<void>) => {
+export const useInfiniteScroll = (loadMore: () => Promise<void>) => {
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
@@ -14,16 +14,15 @@ const useInfiniteScroll = (loadMore: () => Promise<void>) => {
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     if (isFetching) {
-      loadMore().finally(() => setIsFetching(false));
+      void loadMore().finally(() => setIsFetching(false));
     }
   }, [isFetching, loadMore]);
 
   return { isFetching };
 };
-
-export default useInfiniteScroll;

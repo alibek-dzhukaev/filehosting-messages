@@ -1,14 +1,16 @@
-import React from 'react'
-import { FaUser, FaEnvelope, FaFolder } from 'react-icons/fa' // Import icons
-import styles from './Header.module.scss'
-import { Link } from '../Link/Link'
-import { PrivateRoutes } from '@/layouts/PrivateLayout/routes'
-import Typeahead from "@components/Typeahead/Typeahead";
+import React from 'react';
 
-const Header: React.FC = () => {
-    const handleSearch = () => {
-        console.log('handle-search')
-    }
+import { FaUser, FaEnvelope, FaFolder } from 'react-icons/fa'; // Import icons
+
+import { PrivateRoutes } from '@/layouts/PrivateLayout/routes';
+import { Typeahead } from '@components/Typeahead/Typeahead';
+
+import { Link } from '../Link/Link';
+
+import styles from './Header.module.scss';
+
+export const Header: React.FC = () => {
+  const handleSearch = () => 3;
 
   return (
     <header className={styles.header}>
@@ -17,11 +19,10 @@ const Header: React.FC = () => {
       </div>
 
       <div className={styles.middleSection}>
-       <Typeahead onSearch={handleSearch} placeholder="Search files, users..." />
+        <Typeahead onSearch={handleSearch} placeholder="Search files, users..." />
       </div>
 
       <div className={styles.rightSection}>
-
         <Link to={PrivateRoutes.FEED} className={styles.iconButton}>
           <FaEnvelope className={styles.icon} />
         </Link>
@@ -33,7 +34,5 @@ const Header: React.FC = () => {
         </Link>
       </div>
     </header>
-  )
-}
-
-export default Header
+  );
+};

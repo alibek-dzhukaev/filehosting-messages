@@ -1,13 +1,13 @@
 /// <reference types="webpack-env" />
 
 declare module '*.scss' {
-    const content: { [className: string]: string };
-    export default content;
+  const content: { [className: string]: string };
+  export default content;
 }
 
 declare module '*.css' {
-    const content: { [className: string]: string };
-    export default content;
+  const content: { [className: string]: string };
+  export default content;
 }
 declare module '*.png';
 declare module '*.jpg';

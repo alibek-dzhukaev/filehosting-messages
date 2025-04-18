@@ -29,14 +29,14 @@ A React-based web application for uploading, hosting, and sharing files with oth
    git clone git@github.com:alibek-dzhukaev/filehosting-messages.git
    ```
 2. Navigate to project:
-    ```bash
-    cd filehosting-messages
-    ```
+   ```bash
+   cd filehosting-messages
+   ```
 3. Install dependencies:
-    ```bash
+   ```bash
    pnpm install
-    ```
+   ```
 4. Run application:
-    ```bash
+   ```bash
    pnpm run start
-    ```
+   ```

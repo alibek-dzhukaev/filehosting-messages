@@ -31,13 +31,8 @@
       "@flows/*": ["src/flows/*"],
       "@processes/*": ["src/processes/*"],
       "@screens/*": ["src/screens/*"],
-      "@services/*": ["src/services/*"],
+      "@services/*": ["src/services/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.scss",
-    "src/global.d.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.scss", "src/global.d.ts", "tests/**/*"]
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import styles from './ErrorNotification.module.scss';
 
 interface ErrorNotificationProps {
@@ -7,7 +8,11 @@ interface ErrorNotificationProps {
   onClose: () => void;
 }
 
-const ErrorNotification: React.FC<ErrorNotificationProps> = ({ message, duration = 5000, onClose }) => {
+export const ErrorNotification: React.FC<ErrorNotificationProps> = ({
+  message,
+  duration = 5000,
+  onClose,
+}) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -32,5 +37,3 @@ const ErrorNotification: React.FC<ErrorNotificationProps> = ({ message, duration
     </div>
   );
 };
-
-export default ErrorNotification;

@@ -1,100 +1,101 @@
 import { scope } from '@config/scope.di';
 
-import {RouteHandler} from './types';
+import { RouteHandler } from './types';
 
 @scope.singleton()
 export class RouterService {
-    private routes: Record<string, VoidFunction> = {};
-    private currentPath: string = window.location.pathname;
-    private handlers: RouteHandler[] = [];
+  private routes: Record<string, VoidFunction> = {};
+  private currentPath: string = window.location.pathname;
+  private handlers: RouteHandler[] = [];
 
-    constructor() {
-        window.addEventListener('popstate', this.handlePopState.bind(this));
+  constructor() {
+    window.addEventListener('popstate', this.handlePopState.bind(this));
+  }
+
+  /**
+   * Adds a route and its corresponding handler.
+   */
+  public addRoute(path: string, handler: VoidFunction): void {
+    if (this.routes[path]) {
+      console.warn(`Route "${path}" is already defined. Overwriting it.`);
+    }
+    this.routes[path] = handler;
+  }
+
+  /**
+   * Navigates to the specified path.
+   */
+  public navigate(path: string): void {
+    if (this.currentPath === path) {
+      return;
     }
 
-    /**
-     * Adds a route and its corresponding handler.
-     */
-    public addRoute(path: string, handler: VoidFunction): void {
-        if (this.routes[path]) {
-            console.warn(`Route "${path}" is already defined. Overwriting it.`);
-        }
-        this.routes[path] = handler;
-    }
+    window.history.pushState({}, '', path);
+    this.updateCurrentPath(path);
+  }
 
-    /**
-     * Navigates to the specified path.
-     */
-    public navigate(path: string): void {
-        if (this.currentPath === path) {
-            return;
-        }
+  public goBack() {
+    window.history.back();
+  }
 
-        window.history.pushState({}, '', path);
-        this.updateCurrentPath(path);
-    }
+  public get canGoBack() {
+    return window.history.length;
+  }
 
-    public goBack() {
-        window.history.back();
-    }
+  /**
+   * Subscribes to route changes.
+   */
+  public subscribe(handler: RouteHandler): void {
+    this.handlers.push(handler);
+  }
 
-    public get canGoBack() {
-        return window.history.length;
-    }
+  /**
+   * Unsubscribes from route changes.
+   */
+  public unsubscribe(handler: RouteHandler): void {
+    this.handlers = this.handlers.filter((h) => h !== handler);
+  }
 
-    /**
-     * Subscribes to route changes.
-     */
-    public subscribe(handler: RouteHandler): void {
-        this.handlers.push(handler);
-    }
+  /**
+   * Returns the current path.
+   */
+  public getCurrentPath(): string {
+    return this.currentPath;
+  }
 
-    /**
-     * Unsubscribes from route changes.
-     */
-    public unsubscribe(handler: RouteHandler): void {
-        this.handlers = this.handlers.filter((h) => h !== handler);
-    }
+  /**
+   * Executes the handler for the current route.
+   */
+  public executeCurrentRoute(): void {
+    const handler = this.routes[this.currentPath];
 
-    /**
-     * Returns the current path.
-     */
-    public getCurrentPath(): string {
-        return this.currentPath;
+    if (handler) {
+      handler();
+    } else {
+      console.warn(`No route defined for path "${this.currentPath}"`);
     }
+  }
 
-    /**
-     * Executes the handler for the current route.
-     */
-    public executeCurrentRoute(): void {
-        const handler = this.routes[this.currentPath];
-        if (handler) {
-            handler();
-        } else {
-            console.warn(`No route defined for path "${this.currentPath}"`);
-        }
-    }
+  /**
+   * Handles the popstate event (back/forward navigation).
+   */
+  private handlePopState(): void {
+    this.updateCurrentPath(window.location.pathname);
+  }
 
-    /**
-     * Handles the popstate event (back/forward navigation).
-     */
-    private handlePopState(): void {
-        this.updateCurrentPath(window.location.pathname);
-    }
+  /**
+   * Updates the current path and notifies subscribers.
+   */
+  private updateCurrentPath(path: string): void {
+    this.currentPath = path;
+    this.notifyHandlers(path);
+    this.executeCurrentRoute();
+  }
 
-    /**
-     * Updates the current path and notifies subscribers.
-     */
-    private updateCurrentPath(path: string): void {
-        this.currentPath = path;
-        this.notifyHandlers(path);
-        this.executeCurrentRoute();
-    }
-
-    /**
-     * Notifies all subscribers of a route change.
-     */
-    private notifyHandlers(path: string): void {
-        this.handlers.forEach((handler) => handler(path));
-    }
+  /**
+   * Notifies all subscribers of a route change.
+   */
+  private notifyHandlers(path: string): void {
+    this.handlers.forEach((handler) => handler(path));
+  }
 }
